@@ -111,7 +111,7 @@
       <x>10</x>
       <y>120</y>
       <width>341</width>
-      <height>461</height>
+      <height>481</height>
      </rect>
     </property>
    </widget>
@@ -121,7 +121,7 @@
       <x>360</x>
       <y>120</y>
       <width>801</width>
-      <height>461</height>
+      <height>481</height>
      </rect>
     </property>
     <widget class="QWidget" name="tab">

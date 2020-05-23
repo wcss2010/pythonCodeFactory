@@ -6,12 +6,14 @@ from PyQt5.QtNetwork import *
 import os
 import sys
 import pathlib
+from ui.Ui_mainWindow import Ui_MainWindow
 
 class Event_mainWindow(object):
   def setMainEvent(self,mainWindowThread,mainUIDefine):
     #保存引用
     self.mainWindow = mainWindowThread #主窗体线程
     self.mainUI = mainUIDefine  #窗体定义类
+    self.mainWindow.setFixedSize(1167, 635)
 
     #设置事件
     #self.mainUI.btnEncode.clicked.connect(self.btnEncodeClicked)
