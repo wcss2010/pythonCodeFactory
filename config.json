@@ -1,1 +1,1 @@
-{"adapters": {"xxxxDBCode": {"title": "xxx", "command": "python3 xxx.py input.json output.json"}}}
+{"adapters": {"xxxxDBCode": {"title": "xxx", "command": "python3 xxx.py *input* *output*", "inputFile": "input.json", "outputFile": "output.json"}}}

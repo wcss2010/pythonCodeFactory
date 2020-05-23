@@ -39,7 +39,7 @@ class Event_mainWindow(object):
         print(e)
     else:
       try:
-        self.configObj['adapters'] = {'xxxxDBCode':{'title':'xxx','command':'python3 xxx.py input.json output.json'}}
+        self.configObj['adapters'] = {'xxxxDBCode':{'title':'xxx','command':'python3 xxx.py *input* *output*','inputFile':'input.json','outputFile':'output.json'}}
         f = open(self.configPath,mode='w+',encoding='utf-8')
         f.write(json.dumps(self.configObj))
         f.close()
