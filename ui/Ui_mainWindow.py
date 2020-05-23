@@ -77,7 +77,7 @@ class Ui_MainWindow(object):
         self.btnMakeCode.setText(_translate("MainWindow", "生成代码"))
         self.btnModifyScript.setText(_translate("MainWindow", "修改代码生成脚本"))
         self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码"))
-        self.btnHelp.setText(_translate("MainWindow", "帮助"))
+        self.btnHelp.setText(_translate("MainWindow", "关于"))
         self.btnConfig.setText(_translate("MainWindow", "配置"))
         self.twPages.setTabText(self.twPages.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
         self.twPages.setTabText(self.twPages.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))

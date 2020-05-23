@@ -59,9 +59,12 @@ class Event_mainWindow(object):
          self.mainUI.cbxDBAdapters.addItem(v['title'] + '数据库(外置)',userData=v)
   
   def setEvents(self):    
-    pass
-    #self.mainUI.btnEncode.clicked.connect(self.btnEncodeClicked)
-    #self.mainUI.btnDecode.clicked.connect(self.btnDecodeClicked)
+    self.mainUI.btnOpenDB.clicked.connect(self.btnOpenDBClicked)
+    self.mainUI.btnMakeCode.clicked.connect(self.btnMakeCodeClicked)
+    self.mainUI.btnModifyScript.clicked.connect(self.btnModifyScriptClicked)
+    self.mainUI.btnMakeAllCode.clicked.connect(self.btnMakeAllCodeClicked)
+    self.mainUI.btnHelp.clicked.connect(self.btnHelpClicked)
+    self.mainUI.btnConfig.clicked.connect(self.btnConfigClicked)
 
   def btnOpenDBClicked(self,e):
     pass
@@ -76,7 +79,7 @@ class Event_mainWindow(object):
     pass
 
   def btnHelpClicked(self,e):
-    pass
+    QMessageBox.information(None,'关于','简易数据库代码生成器V1.0')
 
   def btnConfigClicked(self,e):
     pass
