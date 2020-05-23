@@ -58,10 +58,28 @@ class Event_mainWindow(object):
        for k,v in self.adapterList.items():
          self.mainUI.cbxDBAdapters.addItem(v['title'] + '数据库(外置)',userData=v)
   
-  def setEvents(self):
+  def setEvents(self):    
     pass
     #self.mainUI.btnEncode.clicked.connect(self.btnEncodeClicked)
     #self.mainUI.btnDecode.clicked.connect(self.btnDecodeClicked)
+
+  def btnOpenDBClicked(self,e):
+    pass
+
+  def btnMakeCodeClicked(self,e):
+    pass
+
+  def btnModifyScriptClicked(self,e):
+    pass
+
+  def btnMakeAllCodeClicked(self,e):
+    pass
+
+  def btnHelpClicked(self,e):
+    pass
+
+  def btnConfigClicked(self,e):
+    pass
 
   def btnEncodeClicked(self,e):
     pass
