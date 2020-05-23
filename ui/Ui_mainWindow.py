@@ -26,10 +26,10 @@ class Ui_MainWindow(object):
         self.txtDBUrl.setGeometry(QtCore.QRect(10, 30, 1141, 61))
         self.txtDBUrl.setObjectName("txtDBUrl")
         self.btnOpenDB = QtWidgets.QPushButton(self.groupBox)
-        self.btnOpenDB.setGeometry(QtCore.QRect(350, 100, 87, 27))
+        self.btnOpenDB.setGeometry(QtCore.QRect(350, 100, 90, 27))
         self.btnOpenDB.setObjectName("btnOpenDB")
         self.btnMakeCode = QtWidgets.QPushButton(self.groupBox)
-        self.btnMakeCode.setGeometry(QtCore.QRect(450, 100, 87, 27))
+        self.btnMakeCode.setGeometry(QtCore.QRect(450, 100, 90, 27))
         self.btnMakeCode.setObjectName("btnMakeCode")
         self.btnModifyScript = QtWidgets.QPushButton(self.groupBox)
         self.btnModifyScript.setGeometry(QtCore.QRect(670, 100, 141, 27))
@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.0"))
-        self.btnOpenDB.setText(_translate("MainWindow", "打开连接"))
+        self.btnOpenDB.setText(_translate("MainWindow", "打开数据库"))
         self.btnMakeCode.setText(_translate("MainWindow", "生成代码"))
         self.btnModifyScript.setText(_translate("MainWindow", "修改代码生成脚本"))
         self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码"))
