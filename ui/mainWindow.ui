@@ -42,23 +42,10 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnManageDBAdapter">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>100</y>
-       <width>141</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>管理数据库适配器</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="btnOpenDB">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>350</x>
        <y>100</y>
        <width>87</width>
        <height>27</height>
@@ -71,7 +58,7 @@
     <widget class="QPushButton" name="btnMakeCode">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>440</x>
        <y>100</y>
        <width>87</width>
        <height>27</height>
@@ -84,7 +71,7 @@
     <widget class="QPushButton" name="btnModifyScript">
      <property name="geometry">
       <rect>
-       <x>680</x>
+       <x>530</x>
        <y>100</y>
        <width>141</width>
        <height>27</height>
@@ -97,7 +84,7 @@
     <widget class="QComboBox" name="cbxDBAdapters">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>10</x>
        <y>100</y>
        <width>331</width>
        <height>27</height>
