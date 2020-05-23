@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
 from UtilTool import UtilTool
+from JsCompile import JsCompile
 import os
 import sys
 import pathlib
@@ -65,7 +66,10 @@ class Event_mainWindow(object):
     pass
 
   def btnMakeCodeClicked(self,e):
-    pass
+    scriptStr = UtilTool.readAllText('/home/flywcs/test.js')
+    tableData = {'Version':[{"Name":"ID","Type":"nvarchar"},{"Name":"Name","Type":"nvarchar"}]}
+    resultStr = JsCompile(scriptStr,self.mainUI.txtDBUrl.toPlainText(),json.dumps(tableData)).execute()
+    QMessageBox.information(None,'结果',resultStr)
 
   def btnModifyScriptClicked(self,e):
     pass
