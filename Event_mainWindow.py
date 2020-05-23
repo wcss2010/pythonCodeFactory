@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
+from UtilTool import UtilTool
 import os
 import sys
 import pathlib
@@ -31,20 +32,14 @@ class Event_mainWindow(object):
 
   def loadConfig(self):
     if pathlib.Path(self.configPath).exists():
-      try:
-        f = open(self.configPath,mode='r',encoding='utf-8')
-        self.configObj = json.loads(f.read())
-        f.close()
-      except Exception as e:
-        print(e)
+      #读入数据
+      jsonStr = UtilTool.readAllText(self.configPath)
+      self.configObj = json.loads(jsonStr)
     else:
-      try:
-        self.configObj['adapters'] = {'xxxxDBCode':{'title':'xxx','command':'python3 xxx.py *input* *output*','inputFile':'input.json','outputFile':'output.json'}}
-        f = open(self.configPath,mode='w+',encoding='utf-8')
-        f.write(json.dumps(self.configObj))
-        f.close()
-      except Exception as e:
-        print(e)
+      #初始化的例子
+      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py *input* *output*','inputFile':'input.json','outputFile':'output.json'}}
+      #写入数据
+      UtilTool.writeAllText(self.configPath,json.dumps(self.configObj))
   
   def loadAdapterList(self):
     #内置
