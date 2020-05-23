@@ -26,7 +26,7 @@
       <x>0</x>
       <y>-20</y>
       <width>1161</width>
-      <height>131</height>
+      <height>140</height>
      </rect>
     </property>
     <property name="title">
@@ -58,7 +58,7 @@
     <widget class="QPushButton" name="btnMakeCode">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>450</x>
        <y>100</y>
        <width>87</width>
        <height>27</height>
@@ -71,7 +71,7 @@
     <widget class="QPushButton" name="btnModifyScript">
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>670</x>
        <y>100</y>
        <width>141</width>
        <height>27</height>
@@ -91,14 +91,53 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="btnMakeAllCode">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>100</y>
+       <width>111</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>生成所有代码</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnHelp">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>100</y>
+       <width>51</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>帮助</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnConfig">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>100</y>
+       <width>51</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>配置</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QTreeView" name="tvTables">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>130</y>
       <width>341</width>
-      <height>481</height>
+      <height>470</height>
      </rect>
     </property>
    </widget>
@@ -106,9 +145,9 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>120</y>
+      <y>130</y>
       <width>801</width>
-      <height>481</height>
+      <height>470</height>
      </rect>
     </property>
     <widget class="QWidget" name="tab">
