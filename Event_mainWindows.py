@@ -120,6 +120,7 @@ class Event_mainWindow(object):
     self.mainUI.txtEntityAndDAOScript.setText(MyIOTool.readAllText(self.entityAndDAOScriptFile))
   
   def btnOpenDBClicked(self,e):
+    self.mainUI.tvTables.setModel(None)
     dbAdapter = self.mainUI.cbxDBAdapters.currentData()
     if (dbAdapter==None):
       pass
@@ -149,9 +150,9 @@ class Event_mainWindow(object):
          else:
            #失败
            errorResult = result.replace('error,','')
-           QmessageBox.information(None,"错误","打开数据库错误！错误输出：" + errorResult)         
+           QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + errorResult)         
       except Exception as e:
-        QmessageBox.information(None,"错误","打开数据库错误！错误输出：" + e)
+        QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + e)
 
   def btnMakeCodeClicked(self,e):
     scriptStr = MyIOTool.readAllText('/home/flywcs/test.js')
