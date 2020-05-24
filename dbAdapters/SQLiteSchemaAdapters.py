@@ -23,7 +23,10 @@ class SQLiteSchemaAdapter(BaseAdapter):
                    for rr in tableResult:
                        columnInfo = SchemaColumn(rr[1],str(rr[2]).lower())
                        tableInfo.columns.append(columnInfo)
+                   schemaObj.tables.append(tableInfo)
                result='ok'
            except sqlite3.Error as e:
                result='error,' + e
+       else:
+           result='error,db not found!'
        return result,schemaObj.toDict()

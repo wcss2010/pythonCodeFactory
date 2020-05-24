@@ -120,7 +120,38 @@ class Event_mainWindow(object):
     self.mainUI.txtEntityAndDAOScript.setText(MyIOTool.readAllText(self.entityAndDAOScriptFile))
   
   def btnOpenDBClicked(self,e):
-    print(os.system("java -version"))
+    dbAdapter = self.mainUI.cbxDBAdapters.currentData()
+    if (dbAdapter==None):
+      pass
+    else:
+      try:
+         result,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
+         print('Result:' + result)
+         print('Tables:' + json.dumps(rData,indent=4))
+         if result.startswith('ok'):
+           #成功
+           nodeModels = QStandardItemModel()
+           tableList = rData["tables"]
+           if tableList==None:
+              pass
+           else:
+              for tName,tTable in tableList.items():
+                tableObj = QStandardItem(tTable["tableName"] + '(' + tTable["tableType"] + ')')
+                tableObj.setData(tTable)
+                tableObj.setEditable(False)
+                columnList = tTable["columns"]
+                for cObj in columnList:
+                   columnObj = QStandardItem(cObj["name"] + '('+ cObj["type"] +')')
+                   columnObj.setEditable(False)
+                   tableObj.appendRow(columnObj)
+                nodeModels.appendRow(tableObj)
+           self.mainUI.tvTables.setModel(nodeModels)
+         else:
+           #失败
+           errorResult = result.replace('error,','')
+           QmessageBox.information(None,"错误","打开数据库错误！错误输出：" + errorResult)         
+      except Exception as e:
+        QmessageBox.information(None,"错误","打开数据库错误！错误输出：" + e)
 
   def btnMakeCodeClicked(self,e):
     scriptStr = MyIOTool.readAllText('/home/flywcs/test.js')

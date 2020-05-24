@@ -42,6 +42,7 @@ class Ui_MainWindow(object):
         self.btnHelp.setObjectName("btnHelp")
         self.tvTables = QtWidgets.QTreeView(self.centralwidget)
         self.tvTables.setGeometry(QtCore.QRect(10, 130, 341, 470))
+        self.tvTables.setHeaderHidden(True)
         self.tvTables.setObjectName("tvTables")
         self.twPages = QtWidgets.QTabWidget(self.centralwidget)
         self.twPages.setGeometry(QtCore.QRect(360, 130, 801, 470))
