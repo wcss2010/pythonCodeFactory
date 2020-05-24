@@ -9,6 +9,7 @@ import os
 import sys
 import pathlib
 import json
+import shutil
 from ui.Ui_mainWindow import Ui_MainWindow
 
 class Event_mainWindow(object):
@@ -75,12 +76,35 @@ class Event_mainWindow(object):
         pass
     else:
         os.makedirs(scriptDir)
-    #加载常用代码脚本
+    templeteFile = os.path.join(os.getcwd(),'templete.js')
+    #初始化常用代码脚本
     self.normalScriptFile = os.path.join(scriptDir,"normal.js")
-
-    #加载实体和DAO代码脚本
-    self.entityAndDAOFile = os.path.join(scriptDir,"entityanddao.js")
-
+    if (pathlib.Path(self.normalScriptFile).exists()):
+      pass
+    else:
+      if (pathlib.Path(templeteFile).exists()):
+          try:
+            shutil.copyfile(templeteFile,self.normalScriptFile)
+          except Exception as e:
+            print(e)
+      else:
+        UtilTool.writeAllText(self.normalScriptFile)
+    #初始化实体和DAO代码脚本
+    self.entityAndDAOScriptFile = os.path.join(scriptDir,"entityanddao.js")
+    if (pathlib.Path(self.entityAndDAOScriptFile).exists()):
+      pass
+    else:
+      if (pathlib.Path(templeteFile).exists()):
+          try:
+            shutil.copyfile(templeteFile,self.entityAndDAOScriptFile)
+          except Exception as e:
+            print(e)
+      else:
+        UtilTool.writeAllText(self.entityAndDAOScriptFile)
+    #显示脚本内容
+    self.mainUI.txtNormalScript.setText(UtilTool.readAllText(self.normalScriptFile))
+    self.mainUI.txtEntityAndDAOScript.setText(UtilTool.readAllText(self.entityAndDAOScriptFile))
+  
   def btnOpenDBClicked(self,e):
     pass
 
@@ -94,39 +118,25 @@ class Event_mainWindow(object):
     pass
   
   def btnHelpClicked(self,e):
-    QMessageBox.information(None,'关于','简易数据库代码生成器V1.0')
+    QMessageBox.information(None,'关于','简易数据库代码生成器V1.0\n本软件基于Python编写！')
 
   def btnSaveNormalScriptClicked(self,e):
-    pass
+    try:
+      UtilTool.writeAllText(self.normalScriptFile,self.mainUI.txtNormalScript.toPlainText())
+      QMessageBox.information(None,"提示","保存完成!")
+    except IOError as e:
+      QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveEntityAndDAOScriptClicked(self,e):
-    pass
+    try:
+      UtilTool.writeAllText(self.entityAndDAOScriptFile,self.mainUI.txtEntityAndDAOScript.toPlainText())
+      QMessageBox.information(None,"提示","保存完成!")
+    except IOError as e:
+      QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveConfigClicked(self,e):
-    pass
-
-  def btnEncodeClicked(self,e):
-    pass
-    #if self.mainUI.txtCode.toPlainText() == None:
-    #    pass
-    #else:
-    #    try:
-    #        imgFile = os.getcwd() + '/q.png'
-    #        img = qrcode.make(self.mainUI.txtCode.toPlainText())
-    #        img.save(imgFile)
-    #        self.mainUI.lblImage.setPixmap(QPixmap(imgFile))
-    #    except Exception as ex:
-    #        self.mainUI.statusbar.showMessage('生成错误...Ex:' + ex)    
-  def btnDecodeClicked(self,e):
-    pass
-    #imgFile,imgFormat = QFileDialog.getOpenFileName(None,'选择二维码图片','~/','图片文件(*.png *.jpg *.jpeg)')
-    #if pathlib.Path(imgFile).exists():
-    #    self.mainUI.lblImage.setPixmap(QPixmap(imgFile))
-    #    zx = zxing.BarCodeReader()
-    #    zxData = zx.decode(imgFile)
-    #    if zxData == None:
-    #        pass
-    #    else:
-    #        self.mainUI.txtCode.setText(zxData.raw)
-    #else:
-    #    pass
+    try:
+      UtilTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
+      QMessageBox.information(None,"提示","保存完成!")
+    except IOError as e:
+      QMessageBox.information(None,"错误","保存失败!输出：" + e)
