@@ -67,8 +67,8 @@ class Event_mainWindow(object):
 
   def btnMakeCodeClicked(self,e):
     scriptStr = UtilTool.readAllText('/home/flywcs/test.js')
-    tableData = {'Version':[{"Name":"ID","Type":"nvarchar"},{"Name":"Name","Type":"nvarchar"}]}
-    resultStr = JsCompile(scriptStr,self.mainUI.txtDBUrl.toPlainText(),json.dumps(tableData)).execute()
+    tempData = {'a1':'vvvvv','a2':'bbbbbb'}
+    resultStr = JsCompile(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
     QMessageBox.information(None,'结果',resultStr)
 
   def btnModifyScriptClicked(self,e):

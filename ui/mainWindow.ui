@@ -68,19 +68,6 @@
       <string>生成代码</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnModifyScript">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>100</y>
-       <width>141</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>修改代码生成脚本</string>
-     </property>
-    </widget>
     <widget class="QComboBox" name="cbxDBAdapters">
      <property name="geometry">
       <rect>
@@ -96,18 +83,18 @@
       <rect>
        <x>550</x>
        <y>100</y>
-       <width>111</width>
+       <width>151</width>
        <height>27</height>
       </rect>
      </property>
      <property name="text">
-      <string>生成所有代码</string>
+      <string>生成所有代码到文件</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btnHelp">
      <property name="geometry">
       <rect>
-       <x>880</x>
+       <x>710</x>
        <y>100</y>
        <width>51</width>
        <height>27</height>
@@ -115,19 +102,6 @@
      </property>
      <property name="text">
       <string>关于</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnConfig">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>100</y>
-       <width>51</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>配置</string>
      </property>
     </widget>
    </widget>
@@ -150,15 +124,134 @@
       <height>470</height>
      </rect>
     </property>
-    <widget class="QWidget" name="tab">
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabNormal">
+     <property name="currentTabText" stdset="0">
+      <string>常用代码</string>
+     </property>
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>常用代码</string>
      </attribute>
+     <widget class="QPlainTextEdit" name="txtNormalText">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>781</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tabEntityAndDAO">
+     <property name="currentTabText" stdset="0">
+      <string>fff</string>
+     </property>
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>实体和DAO</string>
      </attribute>
+     <widget class="QPlainTextEdit" name="txtEntityAndDAOText">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>781</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabNormalScript">
+     <attribute name="title">
+      <string>编辑常用代码脚本</string>
+     </attribute>
+     <widget class="QTextEdit" name="txtNormalScript">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>781</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnSaveNormalScript">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>10</y>
+        <width>87</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabEntityAndDAOScript">
+     <attribute name="title">
+      <string>编辑实体和DAO代码脚本</string>
+     </attribute>
+     <widget class="QPushButton" name="btnSaveEntityAndDAOScript">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>10</y>
+        <width>87</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtEntityAndDAOScript">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>781</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="btnConfigEditor">
+     <attribute name="title">
+      <string>编辑配置文件</string>
+     </attribute>
+     <widget class="QPushButton" name="btnSaveConfig">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>10</y>
+        <width>87</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtConfig">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>781</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
