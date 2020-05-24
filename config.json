@@ -1,1 +1,10 @@
-{"adapters": {"xxxxCode": {"title": "xxxDB", "command": "python3 xxx.py *input* *output*", "inputFile": "input.json", "outputFile": "output.json"}}}
+{
+    "adapters": {
+        "xxxxCode": {
+            "title": "xxxDB",
+            "command": "python3 xxx.py *input* *output*",
+            "inputFile": "input.json",
+            "outputFile": "output.json"
+        }
+    }
+}

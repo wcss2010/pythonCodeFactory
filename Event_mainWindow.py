@@ -30,6 +30,8 @@ class Event_mainWindow(object):
     self.loadAdapterList()
     #设置事件
     self.setEvents()
+    #初始化
+    self.initData()
 
   def loadConfig(self):
     if pathlib.Path(self.configPath).exists():
@@ -40,7 +42,7 @@ class Event_mainWindow(object):
       #初始化的例子
       self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py *input* *output*','inputFile':'input.json','outputFile':'output.json'}}
       #写入数据
-      UtilTool.writeAllText(self.configPath,json.dumps(self.configObj))
+      UtilTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
     #内置
@@ -56,11 +58,15 @@ class Event_mainWindow(object):
   
   def setEvents(self):    
     self.mainUI.btnOpenDB.clicked.connect(self.btnOpenDBClicked)
-    self.mainUI.btnMakeCode.clicked.connect(self.btnMakeCodeClicked)
-    self.mainUI.btnModifyScript.clicked.connect(self.btnModifyScriptClicked)
+    self.mainUI.btnMakeCode.clicked.connect(self.btnMakeCodeClicked)    
     self.mainUI.btnMakeAllCode.clicked.connect(self.btnMakeAllCodeClicked)
     self.mainUI.btnHelp.clicked.connect(self.btnHelpClicked)
-    self.mainUI.btnConfig.clicked.connect(self.btnConfigClicked)
+    self.mainUI.btnSaveNormalScript.clicked.connect(self.btnSaveNormalScriptClicked)
+    self.mainUI.btnSaveEntityAndDAOScript.clicked.connect(self.btnSaveEntityAndDAOScriptClicked)
+    self.mainUI.btnSaveConfig.clicked.connect(self.btnSaveConfigClicked)
+
+  def initData(self):
+    pass
 
   def btnOpenDBClicked(self,e):
     pass
@@ -71,16 +77,19 @@ class Event_mainWindow(object):
     resultStr = JsCompile(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
     QMessageBox.information(None,'结果',resultStr)
 
-  def btnModifyScriptClicked(self,e):
-    pass
-
   def btnMakeAllCodeClicked(self,e):
     pass
-
+  
   def btnHelpClicked(self,e):
     QMessageBox.information(None,'关于','简易数据库代码生成器V1.0')
 
-  def btnConfigClicked(self,e):
+  def btnSaveNormalScriptClicked(self,e):
+    pass
+
+  def btnSaveEntityAndDAOScriptClicked(self,e):
+    pass
+
+  def btnSaveConfigClicked(self,e):
     pass
 
   def btnEncodeClicked(self,e):
