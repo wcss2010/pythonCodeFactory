@@ -127,8 +127,7 @@ class Event_mainWindow(object):
       pass
     else:
       try:
-         rText,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
-         result = str(rText)
+         result,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
          print('Result:' + result)
          print('Tables:' + json.dumps(rData,indent=4))
          if result.startswith('ok'):

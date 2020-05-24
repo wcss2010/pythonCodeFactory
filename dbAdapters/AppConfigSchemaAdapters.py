@@ -6,6 +6,8 @@ from UtilTool import *
 import pathlib
 from dbAdapters.BaseAdapters import *
 import time
+import subprocess
+import io
 
 class AppConfigSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl):       
@@ -31,8 +33,19 @@ class AppConfigSchemaAdapter(BaseAdapter):
        #写输入配置
        inputConfig = AdapterInputConfig(dbUrl,nameStr)
        MyIOTool.writeAllText(inputFile,json.dumps(inputConfig.toDict(),indent=4))
-       #运行外部程序获得数据库结构       
-       result = os.system(cmdStr.format(input=inputFile,output=outputFile))
+       #运行外部程序获得数据库结构
+       nowCmd = cmdStr.format(input=inputFile,output=outputFile)
+       print('db command:' + nowCmd)
+       proc = subprocess.Popen(nowCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=-1)
+       proc.wait()
+       stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
+       stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')      
+       str_stdout = str(stream_stdout.read())
+       str_stderr = str(stream_stderr.read())
+       print("stdout: " + str_stdout)
+       print("stderr: " + str_stderr)
+       result = (str_stdout + str_stderr).strip()
+       print('db command result:' + result)
        runResult = {}
        if pathlib.Path(outputFile).exists():
            runResult = json.loads(MyIOTool.readAllText(outputFile))
