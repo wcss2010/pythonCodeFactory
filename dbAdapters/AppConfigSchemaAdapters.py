@@ -8,7 +8,7 @@ from dbAdapters.BaseAdapters import *
 import time
 
 class AppConfigSchemaAdapter(BaseAdapter):
-    def getTables(self,dbUrl,dbAdapterInfo):       
+    def getTables(self,dbUrl):       
        result = 'error'
        nameStr = self.dbAdapterInfo['title']
        cmdStr = self.dbAdapterInfo['command']
@@ -26,8 +26,8 @@ class AppConfigSchemaAdapter(BaseAdapter):
        except IOError as e:
           print(e)
        #生成输入和输出配置路径
-       inputFile = os.path.join(inputDir,'input_' + time.time() + ".json")
-       outputFile = os.path.join(outputDir,'output_' + time.time() + ".json")
+       inputFile = os.path.join(inputDir,'input_' + str(time.time()) + ".json")
+       outputFile = os.path.join(outputDir,'output_' + str(time.time()) + ".json")
        #写输入配置
        inputConfig = AdapterInputConfig(dbUrl,nameStr)
        MyIOTool.writeAllText(inputFile,json.dumps(inputConfig.toDict(),indent=4))

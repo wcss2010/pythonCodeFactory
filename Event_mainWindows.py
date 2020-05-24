@@ -81,6 +81,7 @@ class Event_mainWindow(object):
     self.mainUI.btnDownloadOutputTemplete.clicked.connect(self.btnDownloadOutputTempleteClicked)
 
   def initData(self):
+    self.nodeModels = QStandardItemModel()
     #加载配置文件
     if (pathlib.Path(self.configPath).exists()):
         self.mainUI.txtConfig.setText(MyIOTool.readAllText(self.configPath))
@@ -126,12 +127,13 @@ class Event_mainWindow(object):
       pass
     else:
       try:
-         result,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
+         rText,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
+         result = str(rText)
          print('Result:' + result)
          print('Tables:' + json.dumps(rData,indent=4))
          if result.startswith('ok'):
            #成功
-           nodeModels = QStandardItemModel()
+           self.nodeModels = QStandardItemModel()
            tableList = rData["tables"]
            if tableList==None:
               pass
@@ -145,16 +147,17 @@ class Event_mainWindow(object):
                    columnObj = QStandardItem(cObj["name"] + '('+ cObj["type"] +')')
                    columnObj.setEditable(False)
                    tableObj.appendRow(columnObj)
-                nodeModels.appendRow(tableObj)
-           self.mainUI.tvTables.setModel(nodeModels)
+                self.nodeModels.appendRow(tableObj)
+           self.mainUI.tvTables.setModel(self.nodeModels)
          else:
            #失败
            errorResult = result.replace('error,','')
            QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + errorResult)         
       except Exception as e:
-        QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + e)
+        print('error:' + str(e))
+        QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + str(e))
 
-  def btnMakeCodeClicked(self,e):
+  def btnMakeCodeClicked(self,e):    
     scriptStr = MyIOTool.readAllText('/home/flywcs/test.js')
     tempData = {'a1':'vvvvv','a2':'bbbbbb'}
     resultStr = JsCompileTool(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
