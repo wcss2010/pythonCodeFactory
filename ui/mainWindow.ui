@@ -252,6 +252,32 @@
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnDownloadOutputTemplete">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>10</y>
+        <width>111</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下载输出模板</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnDownloadInputTemplete">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>10</y>
+        <width>111</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下载输入模板</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
