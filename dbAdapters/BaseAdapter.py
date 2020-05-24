@@ -27,7 +27,7 @@ class SchemaTable(object):
    def __init__(self,tableName,tableType):
        self.tableName = tableName
        self.tableType = tableType
-       self.columns = {}
+       self.columns = []
    def toDict(self):
        data = {}
        data["tableName"] = self.tableName
