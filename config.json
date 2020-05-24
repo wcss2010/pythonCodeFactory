@@ -2,7 +2,7 @@
     "adapters": {
         "OracleDBCode": {
             "title": "Oracle",
-            "command": "python3 xxx.py {input} {output}",
+            "command": "java -version",
             "inputFile": "input.json",
             "outputFile": "output.json"
         }

@@ -156,11 +156,26 @@ class Event_mainWindow(object):
         print('error:' + str(e))
         QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + str(e))
 
-  def btnMakeCodeClicked(self,e):    
-    scriptStr = MyIOTool.readAllText('/home/flywcs/test.js')
-    tempData = {'a1':'vvvvv','a2':'bbbbbb'}
-    resultStr = JsCompileTool(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
-    QMessageBox.information(None,'结果',resultStr)
+  def btnMakeCodeClicked(self,e):
+    if self.nodeModels.rowCount() >= 1:
+      if len(self.mainUI.tvTables.selectedIndexes()) >= 1:
+          #获得单表数据
+          index = self.mainUI.tvTables.selectedIndexes()[0]
+          crawler = index.model().itemFromIndex(index)
+          tableData = crawler.data()
+          print(json.dumps(tableData))
+          #载入脚本代码
+          normalScript = MyIOTool.readAllText(self.normalScriptFile)
+          entityAndDAOScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
+          #编译执行
+          try:
+            self.mainUI.txtNormalText.setPlainText(self.compileJS(normalScript,tableData))
+            self.mainUI.txtEntityAndDAOText.setPlainText(self.compileJS(entityAndDAOScript,tableData))
+          except Exception as ex:
+            QMessageBox.information(None,"错误","脚本执行出错！错误输出：" + str(ex))
+  
+  def compileJS(self,script,tableData):
+    return JsCompileTool(script,self.mainUI.txtDBUrl.toPlainText(),tableData).execute()
 
   def btnMakeAllCodeClicked(self,e):
     pass
