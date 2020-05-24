@@ -6,6 +6,8 @@ from PyQt5.QtNetwork import *
 from UtilTool import *
 from JsCompile import *
 from dbAdapters.BaseAdapters import *
+from dbAdapters.SQLiteSchemaAdapters import *
+from dbAdapters.AppConfigSchemaAdapters import *
 import os
 import sys
 import pathlib
@@ -51,16 +53,21 @@ class Event_mainWindow(object):
       MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
+    self.mainUI.cbxDBAdapters.clear()
     #内置
-    self.mainUI.cbxDBAdapters.addItem('Sqlite数据库(内置)')
-    #外置    
+    sqliteAdapter = SQLiteSchemaAdapter()
+    sqliteAdapter.initAdapter(None)
+    self.mainUI.cbxDBAdapters.addItem('Sqlite数据库(内置)',userData=sqliteAdapter)
+    #外置
     if self.configObj.get('adapters') == None:
        pass
     else:
        self.adapterList = self.configObj.get('adapters')
        print(self.adapterList)
        for k,v in self.adapterList.items():
-         self.mainUI.cbxDBAdapters.addItem(v['title'] + '数据库(外置)',userData=v)
+         appAdapter = AppConfigSchemaAdapter()
+         appAdapter.initAdapter(v)
+         self.mainUI.cbxDBAdapters.addItem(v['title'] + '数据库(外置)',userData=appAdapter)
   
   def setEvents(self):    
     self.mainUI.btnOpenDB.clicked.connect(self.btnOpenDBClicked)
@@ -144,6 +151,8 @@ class Event_mainWindow(object):
   def btnSaveConfigClicked(self,e):
     try:
       MyIOTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
+      self.loadConfig()
+      self.loadAdapterList()
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)

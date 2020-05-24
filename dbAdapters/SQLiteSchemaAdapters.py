@@ -4,7 +4,7 @@ import os
 import shutil
 import sqlite3
 import pathlib
-from BaseAdapters import *
+from dbAdapters.BaseAdapters import *
 
 class SQLiteSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl):

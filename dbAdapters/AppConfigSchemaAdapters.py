@@ -4,7 +4,7 @@ import os
 import shutil
 from UtilTool import *
 import pathlib
-from BaseAdapters import *
+from dbAdapters.BaseAdapters import *
 import time
 
 class AppConfigSchemaAdapter(BaseAdapter):

@@ -5,7 +5,7 @@ import shutil
 import UtilTool
 
 class BaseAdapter(object):
-   def initAdapter(adapterInfo):
+   def initAdapter(self,adapterInfo):
        self.dbAdapterInfo = adapterInfo
 
    def getTables(self,dbUrl):
