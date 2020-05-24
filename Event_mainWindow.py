@@ -106,7 +106,7 @@ class Event_mainWindow(object):
     self.mainUI.txtEntityAndDAOScript.setText(UtilTool.readAllText(self.entityAndDAOScriptFile))
   
   def btnOpenDBClicked(self,e):
-    pass
+    print(os.system("java -version"))
 
   def btnMakeCodeClicked(self,e):
     scriptStr = UtilTool.readAllText('/home/flywcs/test.js')
