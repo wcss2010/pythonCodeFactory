@@ -5,7 +5,10 @@ import shutil
 import UtilTool
 
 class BaseAdapter(object):
-   def getTables(self,dbUrl,dbAdapterInfo):
+   def initAdapter(adapterInfo):
+       self.dbAdapterInfo = adapterInfo
+
+   def getTables(self,dbUrl):
        pass
 
 class AdapterInputConfig(object):

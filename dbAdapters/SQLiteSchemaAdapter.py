@@ -7,8 +7,9 @@ import pathlib
 from BaseAdapters import *
 
 class SQLiteSchemaAdapter(BaseAdapter):
-    def getTables(self,dbUrl,dbAdapterInfo):
-       schemaObj = SchemaDB("main",dbUrl,dbAdapterInfo)
+    def getTables(self,dbUrl):
+       schemaObj = SchemaDB("main",dbUrl,self.dbAdapterInfo)
+       result = 'error'
        if pathlib.Path(dbUrl).exists():
            try:
                conn = sqlite3.connect(dbUrl)
@@ -22,6 +23,7 @@ class SQLiteSchemaAdapter(BaseAdapter):
                    for rr in tableResult:
                        columnInfo = SchemaColumn(rr[1],str(rr[2]).lower())
                        tableInfo.columns.append(columnInfo)
+               result='ok'
            except sqlite3.Error as e:
-                print(e)
-       return schemaObj
+               result='error,' + e
+       return result,schemaObj.toDict()
