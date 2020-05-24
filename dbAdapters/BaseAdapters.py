@@ -9,9 +9,9 @@ class BaseAdapter(object):
        pass
 
 class AdapterInputConfig(object):
-   def __init__(self,dbUrl,dbType):
-       self.dbUrl = dburl
-       self.dbType = dbType
+   def __init__(self,dUrl,dType):
+       self.dbUrl = dUrl
+       self.dbType = dType
    def toDict(self):
        data = {}
        data["dbUrl"] = self.dbUrl
@@ -19,10 +19,10 @@ class AdapterInputConfig(object):
        return data
 
 class SchemaDB(object):
-   def __init__(self,dbName,dbUrl,dbAdapterInfo):
-       self.dbName = dbName
-       self.dbUrl = dbUrl
-       self.dbAdapterInfo = dbAdapterInfo
+   def __init__(self,dName,dUrl,dAdapterInfo):
+       self.dbName = dName
+       self.dbUrl = dUrl
+       self.dbAdapterInfo = dAdapterInfo
        self.tables = []
    def toDict(self):
        data = {}
@@ -34,9 +34,9 @@ class SchemaDB(object):
        return data
 
 class SchemaTable(object):
-   def __init__(self,tableName,tableType):
-       self.tableName = tableName
-       self.tableType = tableType
+   def __init__(self,tName,tType):
+       self.tableName = tName
+       self.tableType = tType
        self.columns = []
    def toDict(self):
        data = {}
@@ -48,6 +48,6 @@ class SchemaTable(object):
        return data
 
 class SchemaColumn(object):
-   def __init__(self,columnName,columnType):
-       self.columnName = columnName
-       self.columnType = columnType
+   def __init__(self,cName,cType):
+       self.columnName = cName
+       self.columnType = cType

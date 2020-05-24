@@ -153,5 +153,15 @@ class Event_mainWindow(object):
     inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置","~/","输入模板[JSON](*.json)")
     MyIOTool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
+  
   def btnDownloadOutputTempleteClicked(self,e):
+    tempDB = SchemaDB("xxDB","data source ='xxxdb'",{})
+    tempTable = SchemaTable("xxx","table")
+    tempIDField = SchemaColumn("ID","bigint")
+    tempNameField = SchemaColumn("Name","nvarchar(200)")
+    tempTable.columns.append(tempIDField)
+    tempTable.columns.append(tempNameField)
+    tempDB.tables.append(tempTable)
+    outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置","~/","输出模板[JSON](*.json)")
+    MyIOTool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
