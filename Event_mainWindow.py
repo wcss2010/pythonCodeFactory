@@ -66,7 +66,20 @@ class Event_mainWindow(object):
     self.mainUI.btnSaveConfig.clicked.connect(self.btnSaveConfigClicked)
 
   def initData(self):
-    pass
+    #加载配置文件
+    if (pathlib.Path(self.configPath).exists()):
+        self.mainUI.txtConfig.setText(UtilTool.readAllText(self.configPath))
+    #检查是否脚本没有创建
+    scriptDir = os.path.join(os.getcwd(),'scripts')
+    if (pathlib.Path(scriptDir).exists()):
+        pass
+    else:
+        os.makedirs(scriptDir)
+    #加载常用代码脚本
+    self.normalScriptFile = os.path.join(scriptDir,"normal.js")
+
+    #加载实体和DAO代码脚本
+    self.entityAndDAOFile = os.path.join(scriptDir,"entityanddao.js")
 
   def btnOpenDBClicked(self,e):
     pass
