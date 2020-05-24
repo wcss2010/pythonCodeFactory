@@ -1,7 +1,7 @@
 {
     "adapters": {
-        "xxxxCode": {
-            "title": "xxxDB",
+        "MySqlDBCode": {
+            "title": "MySql",
             "command": "python3 xxx.py {input} {output}",
             "inputFile": "input.json",
             "outputFile": "output.json"

@@ -15,5 +15,5 @@
 //
 function script(url,table)
 {
-   return "生成实体和DAO代码! ";
+   return "生成实体和DAO代码!!!";
 }

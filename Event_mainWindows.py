@@ -47,7 +47,6 @@ class Event_mainWindow(object):
       self.configObj['classNameBefore'] = 't'
       self.configObj['classNameAfter'] = 'Object'
       self.configObj['classNamespace'] = 'com.example'
-
       #写入数据
       MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
@@ -151,6 +150,8 @@ class Event_mainWindow(object):
 
   def btnDownloadInputTempleteClicked(self,e):
     inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxdb")    
-
+    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置","~/","输入模板[JSON](*.json)")
+    MyIOTool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
+    QMessageBox.information(None,"提示","保存完成！")
   def btnDownloadOutputTempleteClicked(self,e):
-    pass  
+    QMessageBox.information(None,"提示","保存完成！")
