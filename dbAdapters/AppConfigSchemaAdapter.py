@@ -2,9 +2,9 @@
 import sys
 import os
 import shutil
-import UtilTool
+from UtilTool import *
 import pathlib
-from BaseAdapter import *
+from BaseAdapters import *
 
 class AppConfigSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl,dbAdapterInfo):

@@ -4,8 +4,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
 from UtilTool import *
-from JsCompile import JsCompile
-from dbAdapters.BaseAdapter import *
+from JsCompile import *
+from dbAdapters.BaseAdapters import *
 import os
 import sys
 import pathlib
@@ -38,7 +38,7 @@ class Event_mainWindow(object):
   def loadConfig(self):
     if pathlib.Path(self.configPath).exists():
       #读入数据
-      jsonStr = UtilTool.readAllText(self.configPath)
+      jsonStr = MyIOTool.readAllText(self.configPath)
       self.configObj = json.loads(jsonStr)
     else:
       #初始化的例子
@@ -49,7 +49,7 @@ class Event_mainWindow(object):
       self.configObj['classNamespace'] = 'com.example'
 
       #写入数据
-      UtilTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
+      MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
     #内置
@@ -77,7 +77,7 @@ class Event_mainWindow(object):
   def initData(self):
     #加载配置文件
     if (pathlib.Path(self.configPath).exists()):
-        self.mainUI.txtConfig.setText(UtilTool.readAllText(self.configPath))
+        self.mainUI.txtConfig.setText(MyIOTool.readAllText(self.configPath))
     #检查是否脚本没有创建
     scriptDir = os.path.join(os.getcwd(),'scripts')
     if (pathlib.Path(scriptDir).exists()):
@@ -96,7 +96,7 @@ class Event_mainWindow(object):
           except Exception as e:
             print(e)
       else:
-        UtilTool.writeAllText(self.normalScriptFile)
+        MyIOTool.writeAllText(self.normalScriptFile)
     #初始化实体和DAO代码脚本
     self.entityAndDAOScriptFile = os.path.join(scriptDir,"entityanddao.js")
     if (pathlib.Path(self.entityAndDAOScriptFile).exists()):
@@ -108,18 +108,18 @@ class Event_mainWindow(object):
           except Exception as e:
             print(e)
       else:
-        UtilTool.writeAllText(self.entityAndDAOScriptFile)
+        MyIOTool.writeAllText(self.entityAndDAOScriptFile)
     #显示脚本内容
-    self.mainUI.txtNormalScript.setText(UtilTool.readAllText(self.normalScriptFile))
-    self.mainUI.txtEntityAndDAOScript.setText(UtilTool.readAllText(self.entityAndDAOScriptFile))
+    self.mainUI.txtNormalScript.setText(MyIOTool.readAllText(self.normalScriptFile))
+    self.mainUI.txtEntityAndDAOScript.setText(MyIOTool.readAllText(self.entityAndDAOScriptFile))
   
   def btnOpenDBClicked(self,e):
     print(os.system("java -version"))
 
   def btnMakeCodeClicked(self,e):
-    scriptStr = UtilTool.readAllText('/home/flywcs/test.js')
+    scriptStr = MyIOTool.readAllText('/home/flywcs/test.js')
     tempData = {'a1':'vvvvv','a2':'bbbbbb'}
-    resultStr = JsCompile(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
+    resultStr = JsCompileTool(scriptStr,self.mainUI.txtDBUrl.toPlainText(),tempData).execute()
     QMessageBox.information(None,'结果',resultStr)
 
   def btnMakeAllCodeClicked(self,e):
@@ -130,21 +130,21 @@ class Event_mainWindow(object):
 
   def btnSaveNormalScriptClicked(self,e):
     try:
-      UtilTool.writeAllText(self.normalScriptFile,self.mainUI.txtNormalScript.toPlainText())
+      MyIOTool.writeAllText(self.normalScriptFile,self.mainUI.txtNormalScript.toPlainText())
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveEntityAndDAOScriptClicked(self,e):
     try:
-      UtilTool.writeAllText(self.entityAndDAOScriptFile,self.mainUI.txtEntityAndDAOScript.toPlainText())
+      MyIOTool.writeAllText(self.entityAndDAOScriptFile,self.mainUI.txtEntityAndDAOScript.toPlainText())
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveConfigClicked(self,e):
     try:
-      UtilTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
+      MyIOTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)

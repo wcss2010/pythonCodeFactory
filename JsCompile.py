@@ -5,7 +5,7 @@ import pathlib
 import json
 import js2py
 
-class JsCompile(object):
+class JsCompileTool(object):
     def __init__(self,jsCode,dbUrl,tables):
         self.scriptCode = jsCode
         self.dbUrl = dbUrl

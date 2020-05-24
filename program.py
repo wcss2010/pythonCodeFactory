@@ -4,7 +4,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.uic.properties import QtGui
 from ui.Ui_mainWindow import Ui_MainWindow
-from Event_mainWindow import Event_mainWindow
+from Event_mainWindows import Event_mainWindow
 
 if __name__ == '__main__':
    app = QApplication(sys.argv)

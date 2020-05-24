@@ -1,0 +1,14 @@
+{
+    "adapters": {
+        "xxxxCode": {
+            "title": "xxxDB",
+            "command": "python3 xxx.py {input} {output}",
+            "inputFile": "input.json",
+            "outputFile": "output.json"
+        }
+    },
+    "codeFileExtName": ".cs",
+    "classNameBefore": "t",
+    "classNameAfter": "Object",
+    "classNamespace": "com.example"
+}

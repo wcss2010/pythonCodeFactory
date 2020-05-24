@@ -2,10 +2,9 @@
 import sys
 import os
 import shutil
-import UtilTool
 import sqlite3
 import pathlib
-from BaseAdapter import *
+from BaseAdapters import *
 
 class SQLiteSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl,dbAdapterInfo):
