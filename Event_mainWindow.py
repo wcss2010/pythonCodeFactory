@@ -3,8 +3,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
-from UtilTool import UtilTool
+from UtilTool import *
 from JsCompile import JsCompile
+from dbAdapters.BaseAdapter import *
 import os
 import sys
 import pathlib
@@ -41,7 +42,12 @@ class Event_mainWindow(object):
       self.configObj = json.loads(jsonStr)
     else:
       #初始化的例子
-      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py *input* *output*','inputFile':'input.json','outputFile':'output.json'}}
+      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','inputFile':'input.json','outputFile':'output.json'}}
+      self.configObj['codeFileExtName'] = '.cs'
+      self.configObj['classNameBefore'] = 't'
+      self.configObj['classNameAfter'] = 'Object'
+      self.configObj['classNamespace'] = 'com.example'
+
       #写入数据
       UtilTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
@@ -65,6 +71,8 @@ class Event_mainWindow(object):
     self.mainUI.btnSaveNormalScript.clicked.connect(self.btnSaveNormalScriptClicked)
     self.mainUI.btnSaveEntityAndDAOScript.clicked.connect(self.btnSaveEntityAndDAOScriptClicked)
     self.mainUI.btnSaveConfig.clicked.connect(self.btnSaveConfigClicked)
+    self.mainUI.btnDownloadInputTemplete.clicked.connect(self.btnDownloadInputTempleteClicked)
+    self.mainUI.btnDownloadOutputTemplete.clicked.connect(self.btnDownloadOutputTempleteClicked)
 
   def initData(self):
     #加载配置文件
@@ -140,3 +148,9 @@ class Event_mainWindow(object):
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
+
+  def btnDownloadInputTempleteClicked(self,e):
+    inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxdb")    
+
+  def btnDownloadOutputTempleteClicked(self,e):
+    pass  

@@ -8,5 +8,6 @@ from BaseAdapter import *
 
 class AppConfigSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl,dbAdapterInfo):
-       schemaObj = SchemaDB("main",dbUrl,dbAdapterInfo)       
+       schemaObj = SchemaDB("main",dbUrl,dbAdapterInfo)
+       
        return schemaObj
