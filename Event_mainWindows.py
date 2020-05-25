@@ -143,7 +143,8 @@ class Event_mainWindow(object):
                 tableObj.setEditable(False)
                 columnList = tTable["columns"]
                 for cObj in columnList:
-                   columnObj = QStandardItem(cObj["name"] + '('+ cObj["type"] +')')
+                   colTitle = cObj["name"] + '('+ cObj["type"] +',notnull:'+ cObj['notnull'] +',pk:' + cObj['pk'] + ')'
+                   columnObj = QStandardItem(colTitle)
                    columnObj.setEditable(False)
                    tableObj.appendRow(columnObj)
                 self.nodeModels.appendRow(tableObj)
@@ -175,7 +176,7 @@ class Event_mainWindow(object):
             QMessageBox.information(None,"错误","脚本执行出错！错误输出：" + str(ex))
   
   def compileJS(self,script,tableData):
-    return JsCompileTool(script,self.mainUI.txtDBUrl.toPlainText(),tableData).execute()
+    return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,self.configObj).execute()
 
   def btnMakeAllCodeClicked(self,e):
     pass
@@ -215,8 +216,8 @@ class Event_mainWindow(object):
   def btnDownloadOutputTempleteClicked(self,e):
     tempDB = SchemaDB("xxDB","data source ='xxxdb'",{})
     tempTable = SchemaTable("xxx","table")
-    tempIDField = SchemaColumn("ID","bigint")
-    tempNameField = SchemaColumn("Name","nvarchar(200)")
+    tempIDField = SchemaColumn("ID","bigint","true","true")
+    tempNameField = SchemaColumn("Name","nvarchar(200)","false","false")
     tempTable.columns.append(tempIDField)
     tempTable.columns.append(tempNameField)
     tempDB.tables.append(tempTable)

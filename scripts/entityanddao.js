@@ -6,14 +6,29 @@
 //    "tableName":"XXX"
 //    "tableType":"table"
 //    "columns":[
-//                 {"name":"ID","type":"bigint"}
-//                 {"name":"Name","type":"nvarchar(200)"}
-//                 {"name":"Sex","type":"nvarchar(5)"}
-//                 {"name":"Age","type":"int"}
+//                 {"name":"ID","type":"bigint","notnull":"true","pk":"true"}
+//                 {"name":"Name","type":"nvarchar(200)","notnull":"false","pk":"false"}
+//                 {"name":"Sex","type":"nvarchar(5)","notnull":"false","pk":"false"}
+//                 {"name":"Age","type":"int","notnull":"false","pk":"false"}
 //              ]
 // }
+//config=格式为:
+//{
+//   "adapters": {
+//      "OracleDBCode": {
+//          "title": "Oracle",
+//          "command": "java -version",
+//          "inputFile": "input.json",
+//          "outputFile": "output.json"
+//      }
+//  },
+//  "codeFileExtName": ".cs",
+//  "classNameBefore": "t",
+//  "classNameAfter": "Object",
+//  "classNamespace": "com.example"
+//}
 //
-function script(url,table)
+function script(url,table,config)
 {
-   return "生成实体和DAO代码!!!";
+   return "生成实体和DAO代码! ";
 }
