@@ -5,11 +5,13 @@ import pathlib
 import json
 import js2py
 
-class JsCompileTool(object):
-    def __init__(self,jsCode,dbUrl,tables):
+class JsCompiler(object):
+    def __init__(self,jsCode,dbUrl,tables,config):
         self.scriptCode = jsCode
         self.dbUrl = dbUrl
         self.dbTables = tables
+        self.dbConfig = config
+    
     def execute(self):
         script = js2py.eval_js(self.scriptCode)
-        return script(self.dbUrl,self.dbTables)
+        return script(self.dbUrl,self.dbTables,self.dbConfig)

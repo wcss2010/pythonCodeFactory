@@ -21,7 +21,17 @@ class SQLiteSchemaAdapter(BaseAdapter):
                    cur.execute("PRAGMA table_info(" + tableInfo.tableName + ")")
                    tableResult = cur.fetchall()
                    for rr in tableResult:
-                       columnInfo = SchemaColumn(rr[1],str(rr[2]).lower())
+                       notnullStr = 'false'
+                       pkStr = 'false'
+                       if str(rr[3]) == '1':
+                          notnullStr = 'true'
+                       else:
+                          notnullStr = 'false'
+                       if str(rr[5]) == '1':
+                          pkStr = 'true'
+                       else:
+                          pkStr = 'false'
+                       columnInfo = SchemaColumn(rr[1],str(rr[2]).lower(),notnullStr,pkStr)
                        tableInfo.columns.append(columnInfo)
                    schemaObj.tables.append(tableInfo)
                result='ok'

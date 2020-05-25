@@ -47,10 +47,12 @@ class SchemaTable(object):
        data["tableType"] = self.tableType
        data["columns"] = []
        for col in self.columns:
-          data["columns"].append({"name":col.columnName,"type":col.columnType})
+          data["columns"].append({"name":col.columnName,"type":col.columnType,"notnull":col.columnNotNull,"pk":col.columnPK})
        return data
 
 class SchemaColumn(object):
-   def __init__(self,cName,cType):
+   def __init__(self,cName,cType,cNotNull,cPK):
        self.columnName = cName
        self.columnType = cType
+       self.columnNotNull = cNotNull
+       self.columnPK = cPK
