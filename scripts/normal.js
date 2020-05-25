@@ -30,5 +30,5 @@
 //
 function script(url,table,config)
 {
-   return "生成常用代码! ";
+   return "1生成常用代码! ,,," + table["tableName"] + ",,," + config["classNamespace"];
 }

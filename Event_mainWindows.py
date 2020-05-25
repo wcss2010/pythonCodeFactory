@@ -49,6 +49,7 @@ class Event_mainWindow(object):
       self.configObj['classNameBefore'] = 't'
       self.configObj['classNameAfter'] = 'Object'
       self.configObj['classNamespace'] = 'com.example'
+      self.configObj['dialogRootDir'] = '~/'
       #写入数据
       MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
@@ -179,7 +180,45 @@ class Event_mainWindow(object):
     return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,self.configObj).execute()
 
   def btnMakeAllCodeClicked(self,e):
-    pass
+    if self.nodeModels.rowCount() >= 1:
+      try:
+        #选择路径
+        destPath=QFileDialog.getExistingDirectory(None,"请选择保存位置！",self.configObj["dialogRootDir"])
+        #生成目标路径      
+        destCodePath = os.path.join(destPath,'classes')
+        destAttachPath = os.path.join(destPath,'attachs')
+        sourceAttachPath = os.path.join(os.getcwd(),'codeAttachs')
+        #复制附件目录到
+        if pathlib.Path(sourceAttachPath).exists():
+          try:
+            shutil.copytree(sourceAttachPath,destAttachPath)
+          except Exception as ex:
+            print(ex)
+        #创建代码目录
+        try:
+          os.mkdir(destCodePath)
+        except Exception as ee:
+          print(ee)
+        if pathlib.Path(destCodePath).exists():
+          #生成代码
+          classBeforeName = self.configObj["classNameBefore"]
+          classAfterName = self.configObj["classNameAfter"]
+          codeFileExtName = self.configObj["codeFileExtName"]
+          #读入实体和DAO脚本
+          entityScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
+          for rowIndex in range(0,self.nodeModels.rowCount()):
+            itemRow = self.nodeModels.item(rowIndex)
+            if itemRow==None or itemRow.data()==None:
+              pass
+            else:
+              tableData = itemRow.data()
+              tableName = tableData["tableName"]
+              destFile = os.path.join(destCodePath,classBeforeName + tableName + classAfterName + codeFileExtName)
+              content = self.compileJS(entityScript,tableData)
+              MyIOTool.writeAllText(destFile,content)
+          QMessageBox.information(None,"提示","代码生成完成！")
+      except Exception as vv:
+        QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(vv))
   
   def btnHelpClicked(self,e):
     QMessageBox.information(None,'关于','简易数据库代码生成器V1.0\n本软件基于Python编写！')
@@ -209,7 +248,7 @@ class Event_mainWindow(object):
 
   def btnDownloadInputTempleteClicked(self,e):
     inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxdb")    
-    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置","~/","输入模板[JSON](*.json)")
+    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置",self.configObj["dialogRootDir"],"输入模板[JSON](*.json)")
     MyIOTool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
   
@@ -221,6 +260,6 @@ class Event_mainWindow(object):
     tempTable.columns.append(tempIDField)
     tempTable.columns.append(tempNameField)
     tempDB.tables.append(tempTable)
-    outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置","~/","输出模板[JSON](*.json)")
+    outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置",self.configObj["dialogRootDir"],"输出模板[JSON](*.json)")
     MyIOTool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")

@@ -114,6 +114,12 @@
       <height>470</height>
      </rect>
     </property>
+    <property name="tabletTracking">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
     <property name="headerHidden">
      <bool>true</bool>
     </property>

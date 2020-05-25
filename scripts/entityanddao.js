@@ -30,5 +30,5 @@
 //
 function script(url,table,config)
 {
-   return "生成实体和DAO代码! ";
+   return "2生成实体和DAO代码! ,,," + table["tableName"] + ",,," + config["classNamespace"];
 }

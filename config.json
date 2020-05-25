@@ -1,7 +1,7 @@
 {
     "adapters": {
-        "MySQLCode": {
-            "title": "MySQL",
+        "MySQLDBCODE": {
+            "title": "MySql",
             "command": "python3 xxx.py {input} {output}",
             "inputFile": "input.json",
             "outputFile": "output.json"
@@ -10,5 +10,6 @@
     "codeFileExtName": ".cs",
     "classNameBefore": "t",
     "classNameAfter": "Object",
-    "classNamespace": "com.example"
+    "classNamespace": "com.example",
+    "dialogRootDir": "~/myData/myCode"
 }
