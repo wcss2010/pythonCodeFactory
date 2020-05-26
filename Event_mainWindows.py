@@ -44,7 +44,7 @@ class Event_mainWindow(object):
       self.configObj = json.loads(jsonStr)
     else:
       #初始化的例子
-      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','inputFile':'input.json','outputFile':'output.json'}}
+      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','responseCoding':'gbk','inputFile':'input.json','outputFile':'output.json'}}
       self.configObj['codeFileExtName'] = '.cs'
       self.configObj['classNameBefore'] = 't'
       self.configObj['classNameAfter'] = 'Object'
