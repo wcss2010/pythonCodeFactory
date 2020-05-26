@@ -20,16 +20,28 @@
 //          "command": "java -version",
 //          "inputFile": "input.json",
 //          "outputFile": "output.json"
+//          "responseCoding": "gbk"
 //      }
 //  },
 //  "codeFileExtName": ".cs",
 //  "classNameBefore": "t",
 //  "classNameAfter": "Object",
 //  "classNamespace": "com.example"
+//  "dialogRootDir": "~/"
 //}
+//
+// 返回结果为一个Json字符串，格式如下：
+//  {
+//     "代码段名称1(在实体和DAO脚本中为文件名去掉.cs)":"代码内容"
+//     "代码段名称2(在实体和DAO脚本中为文件名去掉.cs)":"代码内容"
+//     "代码段名称3(在实体和DAO脚本中为文件名去掉.cs)":"代码内容"
+//     "代码段名称4(在实体和DAO脚本中为文件名去掉.cs)":"代码内容"
 //
 function script(url,table,config)
 {
-   var tableName = table["tableName"];
-   return "{\"" tableName + "\":\"ED\",\"" + tableName + "D\":\"ED\"}";2
+   //取表名
+   var tableNames = table["tableName"];
+   //取名称空间
+   var namespaces = config["classNamespace"]
+   return "{\"" + tableName + "\"Entity:\"Entity内容\",\"" + tableName + "DAO\":\"DAO内容\"}";
 }
