@@ -30,5 +30,6 @@
 //
 function script(url,table,config)
 {
-   return "1生成常用代码! ,,," + table["tableName"] + ",,," + config["classNamespace"];
+   var tableName = table["tableName"];
+   return "{\""  tableName + "\":\"UU\",\"" + tableName + "B\":\"UU\"}";1
 }

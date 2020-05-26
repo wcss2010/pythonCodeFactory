@@ -166,15 +166,31 @@ class Event_mainWindow(object):
           crawler = index.model().itemFromIndex(index)
           tableData = crawler.data()
           print(json.dumps(tableData))
-          #载入脚本代码
-          normalScript = MyIOTool.readAllText(self.normalScriptFile)
-          entityAndDAOScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
-          #编译执行
-          try:
-            self.mainUI.txtNormalText.setPlainText(self.compileJS(normalScript,tableData))
-            self.mainUI.txtEntityAndDAOText.setPlainText(self.compileJS(entityAndDAOScript,tableData))
-          except Exception as ex:
-            QMessageBox.information(None,"错误","脚本执行出错！错误输出：" + str(ex))
+          if (tableData == None):
+            pass
+          else:
+            #载入脚本代码
+            normalScript = MyIOTool.readAllText(self.normalScriptFile)
+            entityAndDAOScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
+            #编译执行
+            try:
+              normalDisplayText = ''
+              entityDisplayText = ''
+              #编译并显示常用代码
+              normalResult = json.loads(self.compileJS(normalScript,tableData))
+              for kk,vv in normalResult.items():
+                  normalDisplayText = normalDisplayText+'代码段('+kk+'):\n'
+                  normalDisplayText = normalDisplayText+vv+';\n'
+              self.mainUI.txtNormalText.setPlainText(normalDisplayText)
+              #编译并显示实体和DAO代码
+              entityResult = json.loads(self.compileJS(entityAndDAOScript,tableData))
+              for kkk,vvv in entityResult.items():
+                  entityDisplayText = entityDisplayText+'代码段('+kkk+'):\n'
+                  entityDisplayText = entityDisplayText+vvv+';\n'
+              self.mainUI.txtEntityAndDAOText.setPlainText(entityDisplayText)
+            except Exception as ex:
+              print(ex)
+              QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(ex))
   
   def compileJS(self,script,tableData):
     return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,self.configObj).execute()
@@ -212,12 +228,16 @@ class Event_mainWindow(object):
               pass
             else:
               tableData = itemRow.data()
-              tableName = tableData["tableName"]
-              destFile = os.path.join(destCodePath,classBeforeName + tableName + classAfterName + codeFileExtName)
-              content = self.compileJS(entityScript,tableData)
-              MyIOTool.writeAllText(destFile,content)
+              if tableData == None:
+                pass
+              else:              
+                entityResult = json.loads(self.compileJS(entityScript,tableData))
+                for kkk,vvv in entityResult.items():
+                  destFile = os.path.join(destCodePath,kkk + codeFileExtName)
+                  MyIOTool.writeAllText(destFile,vvv)
           QMessageBox.information(None,"提示","代码生成完成！")
       except Exception as vv:
+        print(vv)
         QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(vv))
   
   def btnHelpClicked(self,e):

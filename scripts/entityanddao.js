@@ -30,5 +30,6 @@
 //
 function script(url,table,config)
 {
-   return "2生成实体和DAO代码! ,,," + table["tableName"] + ",,," + config["classNamespace"];
+   var tableName = table["tableName"];
+   return "{\"" tableName + "\":\"ED\",\"" + tableName + "D\":\"ED\"}";2
 }
