@@ -16,6 +16,7 @@ class AppConfigSchemaAdapter(BaseAdapter):
        cmdStr = self.dbAdapterInfo['command']
        inputFileStr = self.dbAdapterInfo['inputFile']
        outputFileStr = self.dbAdapterInfo['outputFile']
+       responseCoding = self.dbAdapterInfo['responseCoding']
        #检查输入和输出配置目录
        inputDir = os.path.join(os.getcwd(),'inputTempDir')
        outputDir = os.path.join(os.getcwd(),'outputTempDir')
@@ -38,8 +39,8 @@ class AppConfigSchemaAdapter(BaseAdapter):
        print('db command:' + nowCmd)
        proc = subprocess.Popen(nowCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=-1)
        proc.wait()
-       stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
-       stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')      
+       stream_stdout = io.TextIOWrapper(proc.stdout, encoding=responseCoding)
+       stream_stderr = io.TextIOWrapper(proc.stderr, encoding=responseCoding)      
        str_stdout = str(stream_stdout.read())
        str_stderr = str(stream_stderr.read())
        print("stdout: " + str_stdout)
