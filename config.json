@@ -4,7 +4,8 @@
             "title": "MySql",
             "command": "python3 xxx.py {input} {output}",
             "inputFile": "input.json",
-            "outputFile": "output.json"
+            "outputFile": "output.json",
+            "responseCoding": "gbk"
         }
     },
     "codeFileExtName": ".cs",
