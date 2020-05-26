@@ -20,102 +20,23 @@
    <string>简易数据库代码生成器V1.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>-20</y>
-      <width>1161</width>
-      <height>140</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string/>
-    </property>
-    <widget class="QTextEdit" name="txtDBUrl">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>1141</width>
-       <height>61</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnOpenDB">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>100</y>
-       <width>90</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>打开数据库</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnMakeCode">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>100</y>
-       <width>90</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>生成代码</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="cbxDBAdapters">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>100</y>
-       <width>331</width>
-       <height>27</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnMakeAllCode">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>100</y>
-       <width>151</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>生成所有代码到文件</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnHelp">
-     <property name="geometry">
-      <rect>
-       <x>710</x>
-       <y>100</y>
-       <width>51</width>
-       <height>27</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>关于</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QTreeView" name="tvTables">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>109</y>
       <width>341</width>
-      <height>470</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="tabletTracking">
      <bool>true</bool>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -128,9 +49,9 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>130</y>
+      <y>109</y>
       <width>801</width>
-      <height>470</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -152,7 +73,16 @@
         <height>421</height>
        </rect>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
       <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="centerOnScroll">
        <bool>true</bool>
       </property>
      </widget>
@@ -173,7 +103,16 @@
         <height>421</height>
        </rect>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
       <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="centerOnScroll">
        <bool>true</bool>
       </property>
      </widget>
@@ -288,6 +227,78 @@
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btnHelp">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>70</y>
+      <width>51</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关于</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnMakeCode">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>70</y>
+      <width>90</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>生成代码</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnMakeAllCode">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>70</y>
+      <width>151</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>生成所有代码到文件</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbxDBAdapters">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>341</width>
+      <height>27</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDBUrl">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1151</width>
+      <height>50</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnOpenDB">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>70</y>
+      <width>90</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开数据库</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
