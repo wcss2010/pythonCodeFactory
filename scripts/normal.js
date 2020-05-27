@@ -57,7 +57,7 @@ function appendTo(buffer,content)
 //用于模仿C#下的StringBuilder.AppendLine
 function appendLineTo(buffer,content)
 {
-	return buffer + content + "\n";
+	return buffer + content + "\\r\\n";
 }
 
 //入口函数
@@ -76,14 +76,22 @@ function script(url,table,config)
    
    //例子查询语句
    tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
+   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
+   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
+   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
+   tempStr1 = appendTo(tempStr1,"select * from " + tableName + " where xx = '值'");
    
    //例子更新语句
    tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
+   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
+   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
+   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
+   tempStr2 = appendTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
    
    //加入代码段1
-   appendToJson(jsonBuffer,"xx查询语句代码段",tempStr1);
+   jsonBuffer=appendToJson(jsonBuffer,"xx查询语句代码段",tempStr1);
    //加入代码段2
-   appendToJson(jsonBuffer,"xx更新语句代码段",tempStr2);
+   jsonBuffer=appendToJson(jsonBuffer,"xx更新语句代码段",tempStr2);
    
    //返回Json字符串
    return "{" + jsonBuffer + "}";
