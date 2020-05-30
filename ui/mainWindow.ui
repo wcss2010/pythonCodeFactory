@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.0</string>
+   <string>简易数据库代码生成器V1.2</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -226,12 +226,25 @@
        <string>下载输入模板</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnDownloadJS">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>10</y>
+        <width>111</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下载脚本模板</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QPushButton" name="btnHelp">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>840</x>
       <y>70</y>
       <width>51</width>
       <height>27</height>
@@ -298,6 +311,19 @@
     </property>
     <property name="text">
      <string>打开数据库</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnOpenAttachDir">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>70</y>
+      <width>111</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开附件目录</string>
     </property>
    </widget>
   </widget>
