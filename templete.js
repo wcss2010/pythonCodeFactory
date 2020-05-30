@@ -39,25 +39,52 @@
 //  }
 //
 
+//用于模仿C#下的StringBuilder.Append
+function append(buffer,content)
+{
+   buffer.push(content);
+}
+//用于模仿C#下的StringBuilder.AppendLine
+function appendLine(buffer,content)
+{
+    buffer.push(content);
+    buffer.push("\\r\\n");
+}
+//用于模仿C#下的StringBuilder.ToString()
+function toString(buffer)
+{
+    return buffer.join("");
+}
+
+//开始Json
+function beginJson(buffer)
+{
+   buffer.push("{");
+}
+//结束Json
+function endJson(buffer)
+{
+   buffer.push("}");
+}
 //添加内容到Json串缓冲
 function appendToJson(buffer,codeName,codeContent)
 {
-	if (buffer==""){
-	   buffer =  buffer + "\"" + codeName + "\":\"" + codeContent + "\"";
-	}else{
-	   buffer =  buffer +  ",\"" + codeName + "\":\"" + codeContent + "\"";
-	}
-	return buffer;
-}
-//用于模仿C#下的StringBuilder.Append
-function appendTo(buffer,content)
-{
-	return buffer + content;	
-}
-//用于模仿C#下的StringBuilder.AppendLine
-function appendLineTo(buffer,content)
-{
-	return buffer + content + "\\r\\n";
+   //判断是否前面已经数据
+   if (buffer.length == 1)
+   {
+      buffer.push("");
+   }else
+   {
+      buffer.push(",");
+   }
+   //拼装数据
+   buffer.push("\"");
+   buffer.push(codeName);
+   buffer.push("\"");
+   buffer.push(":");
+   buffer.push("\"");
+   buffer.push(codeContent);
+   buffer.push("\"");
 }
 
 //入口函数
@@ -67,32 +94,39 @@ function script(url,table,config)
    var tableName = table["tableName"];
    //取名称空间
    var namespace = config["classNamespace"]
-   //清空Json串缓冲
-   var jsonBuffer="";   
+   //Json缓冲
+   var jsonBuf= new Array();
    //字符缓冲1
-   var tempStr1 = "";
+   var tempBuf1= new Array();
    //字符缓冲2
-   var tempStr2 = "";
+   var tempBuf2= new Array();
    
-   //例子查询语句
-   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
-   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
-   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
-   tempStr1 = appendLineTo(tempStr1,"select * from " + tableName + " where xx = '值'");
-   tempStr1 = appendTo(tempStr1,"select * from " + tableName + " where xx = '值'");
+   //开始Json
+   beginJson(jsonBuf);
    
-   //例子更新语句
-   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
-   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
-   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
-   tempStr2 = appendLineTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
-   tempStr2 = appendTo(tempStr2,"update " + tableName + " set xx = '值' where xx = '值'");
-   
+   //拼装例子1
+   var columns = table["columns"];
+   for(var k = 0;k < columns.length;k++)
+   {
+      var colObj = columns[k];
+      var colName = colObj["name"];
+      append(tempBuf1,colName + ",");
+   }
+
+   //拼装例子2
+   appendLine(tempBuf2,"update " + tableName + " set xx = '值' where xx = '值'");
+   appendLine(tempBuf2,"update " + tableName + " set xx = '值' where xx = '值'");
+   appendLine(tempBuf2,"update " + tableName + " set xx = '值' where xx = '值'");
+   appendLine(tempBuf2,"update " + tableName + " set xx = '值' where xx = '值'");
+
    //加入代码段1
-   jsonBuffer=appendToJson(jsonBuffer,"xx查询语句代码段",tempStr1);
+   appendToJson(jsonBuf,"xx查询语句代码段",toString(tempBuf1));
    //加入代码段2
-   jsonBuffer=appendToJson(jsonBuffer,"xx更新语句代码段",tempStr2);
-   
+   appendToJson(jsonBuf,"xx更新语句代码段",toString(tempBuf2));
+
+   //结束Json
+   endJson(jsonBuf);
+
    //返回Json字符串
-   return "{" + jsonBuffer + "}";
+   return toString(jsonBuf);
 }
