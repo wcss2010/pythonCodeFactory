@@ -80,6 +80,8 @@ class Event_mainWindow(object):
     self.mainUI.btnSaveConfig.clicked.connect(self.btnSaveConfigClicked)
     self.mainUI.btnDownloadInputTemplete.clicked.connect(self.btnDownloadInputTempleteClicked)
     self.mainUI.btnDownloadOutputTemplete.clicked.connect(self.btnDownloadOutputTempleteClicked)
+    self.mainUI.btnDownloadJS.clicked.connect(self.btnDownloadJSClicked)
+    self.mainUI.btnOpenAttachDir.clicked.connect(self.btnOpenAttachDirClicked)
 
   def initData(self):
     self.nodeModels = QStandardItemModel()
@@ -283,3 +285,14 @@ class Event_mainWindow(object):
     outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置",self.configObj["dialogRootDir"],"输出模板[JSON](*.json)")
     MyIOTool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
+
+  def btnDownloadJSClicked(self,e):    
+    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择脚本模板保存位置",self.configObj["dialogRootDir"],"JS脚本[JS](*.js)")
+    MyIOTool.writeAllText(inputFile,MyIOTool.readAllText(os.path.join(os.getcwd(),"templete.js")))
+    QMessageBox.information(None,"提示","保存完成！")
+
+  def btnOpenAttachDirClicked(self,e):
+    try:
+      os.startfile(os.path.join(os.getcwd(),"codeAttachs"))
+    except Exception as ex:
+      pass
