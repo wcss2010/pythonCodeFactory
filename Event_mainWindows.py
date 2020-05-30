@@ -293,6 +293,9 @@ class Event_mainWindow(object):
 
   def btnOpenAttachDirClicked(self,e):
     try:
-      os.startfile(os.path.join(os.getcwd(),"codeAttachs"))
+      if sys.platform == 'win32':
+        os.startfile(os.path.join(os.getcwd(),"codeAttachs"))
+      else:
+        QMessageBox.information(None,"提示","对不起，这个功能只能在windows下用！")
     except Exception as ex:
-      pass
+      print(ex)
