@@ -40,18 +40,24 @@ class Event_mainWindow(object):
   def loadConfig(self):
     if pathlib.Path(self.configPath).exists():
       #读入数据
-      jsonStr = MyIOTool.readAllText(self.configPath)
-      self.configObj = json.loads(jsonStr)
+      try:
+        jsonStr = MyIOTool.readAllText(self.configPath)
+        self.configObj = json.loads(jsonStr)
+      except Exception as exx:
+        self.initConfig()        
     else:
-      #初始化的例子
-      self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','responseCoding':'gbk','inputFile':'input.json','outputFile':'output.json'}}
-      self.configObj['codeFileExtName'] = '.cs'
-      self.configObj['classNameBefore'] = 't'
-      self.configObj['classNameAfter'] = 'Object'
-      self.configObj['classNamespace'] = 'com.example'
-      self.configObj['dialogRootDir'] = '~/'
-      #写入数据
-      MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
+      self.initConfig()
+  
+  def initConfig(self):
+    #初始化的例子
+    self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','responseCoding':'gbk','inputFile':'input.json','outputFile':'output.json'}}
+    self.configObj['codeFileExtName'] = '.cs'
+    self.configObj['classNameBefore'] = 't'
+    self.configObj['classNameAfter'] = 'Object'
+    self.configObj['classNamespace'] = 'com.example'
+    self.configObj['dialogRootDir'] = '~/'
+    #写入数据
+    MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
     self.mainUI.cbxDBAdapters.clear()
@@ -266,6 +272,7 @@ class Event_mainWindow(object):
       MyIOTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
       self.loadConfig()
       self.loadAdapterList()
+      self.mainUI.txtConfig.setText(MyIOTool.readAllText(self.configPath))
       QMessageBox.information(None,"提示","保存完成!")
     except Exception as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
