@@ -82,6 +82,8 @@ class Event_mainWindow(object):
     self.mainUI.btnDownloadOutputTemplete.clicked.connect(self.btnDownloadOutputTempleteClicked)
     self.mainUI.btnDownloadJS.clicked.connect(self.btnDownloadJSClicked)
     self.mainUI.btnOpenAttachDir.clicked.connect(self.btnOpenAttachDirClicked)
+    self.mainUI.btnOpenPluginDir.clicked.connect(self.btnOpenPluginDirClicked)
+    self.mainUI.btnOpenScriptDir.clicked.connect(self.btnOpenScriptDirClicked)
 
   def initData(self):
     self.nodeModels = QStandardItemModel()
@@ -265,7 +267,7 @@ class Event_mainWindow(object):
       self.loadConfig()
       self.loadAdapterList()
       QMessageBox.information(None,"提示","保存完成!")
-    except IOError as e:
+    except Exception as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnDownloadInputTempleteClicked(self,e):
@@ -295,6 +297,24 @@ class Event_mainWindow(object):
     try:
       if sys.platform == 'win32':
         os.startfile(os.path.join(os.getcwd(),"codeAttachs"))
+      else:
+        QMessageBox.information(None,"提示","对不起，这个功能只能在windows下用！")
+    except Exception as ex:
+      print(ex)
+  
+  def btnOpenPluginDirClicked(self,e):
+    try:
+      if sys.platform == 'win32':
+        os.startfile(os.path.join(os.getcwd(),"dbAdapters"))
+      else:
+        QMessageBox.information(None,"提示","对不起，这个功能只能在windows下用！")
+    except Exception as ex:
+      print(ex)
+
+  def btnOpenScriptDirClicked(self,e):
+    try:
+      if sys.platform == 'win32':
+        os.startfile(os.path.join(os.getcwd(),"scripts"))
       else:
         QMessageBox.information(None,"提示","对不起，这个功能只能在windows下用！")
     except Exception as ex:
