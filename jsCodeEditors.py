@@ -24,7 +24,7 @@ class JavaScriptHighlighter(QSyntaxHighlighter):
     def __init__(self, parent=None):
         super(JavaScriptHighlighter, self).__init__(parent)
         self.initializeFormats()
-        KEYWORDS = ["abstract", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", "long", "native", "new", "null", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with", "array", "new", "append", "appendLine", "toString", "beginJson", "endJson", "appendToJson"]
+        KEYWORDS = ["abstract", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", "long", "native", "new", "null", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with", "array", "Array", "new", "append", "appendLine", "toString", "beginJson", "endJson", "appendToJson"]
         JavaScriptHighlighter.Rules.append((QRegExp(
                 "|".join([r"\b%s\b" % keyword for keyword in KEYWORDS])),
                 "keyword"))
@@ -136,6 +136,9 @@ class JSCodeEditor(QPlainTextEdit):
         self.updateRequest.connect(self.updateLineNumberArea)
         self.cursorPositionChanged.connect(self.highlightCurrentLine)
         self.updateLineNumberAreaWidth(0)
+
+    def setText(self,content):
+        self.setPlainText(content)
 
     def lineNumberAreaWidth(self):
         digits = 1
