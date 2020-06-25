@@ -243,7 +243,7 @@ class Event_mainWindow(object):
         QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(vv))
   
   def btnHelpClicked(self,e):
-    QMessageBox.information(None,'关于','简易数据库代码生成器V1.0\n本软件基于Python编写！')
+    QMessageBox.information(None,'关于','简易数据库代码生成器\n本软件基于Python3.7+PyQT5+JS2Py+NumPy编写！')
 
   def btnSaveNormalScriptClicked(self,e):
     try:

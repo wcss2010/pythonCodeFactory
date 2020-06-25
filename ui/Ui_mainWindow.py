@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/flywcs/myData/myCode/python-clone-workspace/pythonCodeFactory/ui/mainWindow.ui'
+# Form implementation generated from reading ui file '/home/flyss/myData/myCode/pythonWorkSpace/pythonCodeFactory/ui/mainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.WindowModal)
-        MainWindow.resize(1167, 635)
+        MainWindow.resize(1156, 635)
         MainWindow.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -51,19 +49,19 @@ class Ui_MainWindow(object):
         self.twPages.addTab(self.tabEntityAndDAO, "")
         self.tabNormalScript = QtWidgets.QWidget()
         self.tabNormalScript.setObjectName("tabNormalScript")
-        self.txtNormalScript = QtWidgets.QTextEdit(self.tabNormalScript)
-        self.txtNormalScript.setGeometry(QtCore.QRect(10, 40, 781, 391))
-        self.txtNormalScript.setObjectName("txtNormalScript")
         self.btnSaveNormalScript = QtWidgets.QPushButton(self.tabNormalScript)
         self.btnSaveNormalScript.setGeometry(QtCore.QRect(700, 10, 87, 27))
         self.btnSaveNormalScript.setObjectName("btnSaveNormalScript")
+        self.txtNormalScript = JSCodeEditor(self.tabNormalScript)
+        self.txtNormalScript.setGeometry(QtCore.QRect(10, 40, 781, 390))
+        self.txtNormalScript.setObjectName("txtNormalScript")
         self.twPages.addTab(self.tabNormalScript, "")
         self.tabEntityAndDAOScript = QtWidgets.QWidget()
         self.tabEntityAndDAOScript.setObjectName("tabEntityAndDAOScript")
         self.btnSaveEntityAndDAOScript = QtWidgets.QPushButton(self.tabEntityAndDAOScript)
         self.btnSaveEntityAndDAOScript.setGeometry(QtCore.QRect(700, 10, 87, 27))
         self.btnSaveEntityAndDAOScript.setObjectName("btnSaveEntityAndDAOScript")
-        self.txtEntityAndDAOScript = QtWidgets.QTextEdit(self.tabEntityAndDAOScript)
+        self.txtEntityAndDAOScript = JSCodeEditor(self.tabEntityAndDAOScript)
         self.txtEntityAndDAOScript.setGeometry(QtCore.QRect(10, 40, 781, 391))
         self.txtEntityAndDAOScript.setObjectName("txtEntityAndDAOScript")
         self.twPages.addTab(self.tabEntityAndDAOScript, "")
@@ -108,7 +106,7 @@ class Ui_MainWindow(object):
         self.btnOpenAttachDir.setObjectName("btnOpenAttachDir")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1167, 24))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1156, 36))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -121,7 +119,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.2"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.3"))
         self.tabNormal.setProperty("currentTabText", _translate("MainWindow", "常用代码"))
         self.twPages.setTabText(self.twPages.indexOf(self.tabNormal), _translate("MainWindow", "常用代码"))
         self.tabEntityAndDAO.setProperty("currentTabText", _translate("MainWindow", "fff"))
@@ -140,3 +138,5 @@ class Ui_MainWindow(object):
         self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码到文件"))
         self.btnOpenDB.setText(_translate("MainWindow", "打开数据库"))
         self.btnOpenAttachDir.setText(_translate("MainWindow", "打开附件目录"))
+
+from jsCodeEditors import JSCodeEditor

@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1167</width>
+    <width>1156</width>
     <height>635</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.2</string>
+   <string>简易数据库代码生成器V1.3</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -121,16 +121,6 @@
      <attribute name="title">
       <string>编辑常用代码脚本</string>
      </attribute>
-     <widget class="QTextEdit" name="txtNormalScript">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>781</width>
-        <height>391</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="btnSaveNormalScript">
       <property name="geometry">
        <rect>
@@ -142,6 +132,16 @@
       </property>
       <property name="text">
        <string>保存</string>
+      </property>
+     </widget>
+     <widget class="JSCodeEditor" name="txtNormalScript" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>781</width>
+        <height>390</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -162,7 +162,7 @@
        <string>保存</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtEntityAndDAOScript">
+     <widget class="JSCodeEditor" name="txtEntityAndDAOScript" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -332,13 +332,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1167</width>
-     <height>24</height>
+     <width>1156</width>
+     <height>36</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>JSCodeEditor</class>
+   <extends>QWidget</extends>
+   <header location="global">jsCodeEditors</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
