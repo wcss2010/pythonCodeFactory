@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.txtConfig.setObjectName("txtConfig")
         self.twPages.addTab(self.btnConfigEditor, "")
         self.btnHelp = QtWidgets.QPushButton(self.centralwidget)
-        self.btnHelp.setGeometry(QtCore.QRect(1080, 70, 51, 27))
+        self.btnHelp.setGeometry(QtCore.QRect(1080, 70, 61, 27))
         self.btnHelp.setObjectName("btnHelp")
         self.btnMakeCode = QtWidgets.QPushButton(self.centralwidget)
         self.btnMakeCode.setGeometry(QtCore.QRect(460, 70, 90, 27))
@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.1 项目地址: https://github.com/wcss2010/pythoncodefactory"))
         self.tabNormal.setProperty("currentTabText", _translate("MainWindow", "常用代码"))
         self.twPages.setTabText(self.twPages.indexOf(self.tabNormal), _translate("MainWindow", "常用代码"))
         self.tabEntityAndDAO.setProperty("currentTabText", _translate("MainWindow", "fff"))
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
         self.btnDownloadInputTemplete.setText(_translate("MainWindow", "下载输入模板"))
         self.btnDownloadJS.setText(_translate("MainWindow", "下载脚本模板"))
         self.twPages.setTabText(self.twPages.indexOf(self.btnConfigEditor), _translate("MainWindow", "编辑配置文件"))
-        self.btnHelp.setText(_translate("MainWindow", "关于"))
+        self.btnHelp.setText(_translate("MainWindow", "关于我"))
         self.btnMakeCode.setText(_translate("MainWindow", "生成代码"))
         self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码到文件"))
         self.btnOpenDB.setText(_translate("MainWindow", "打开数据库"))

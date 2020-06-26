@@ -13,13 +13,13 @@ class AppConfigSchemaAdapter(BaseAdapter):
     def getTables(self,dbUrl):       
        result = 'error'
        nameStr = self.dbAdapterInfo['title']
+       codeStr = self.dbAdapterInfo['code']
        cmdStr = self.dbAdapterInfo['command']
-       inputFileStr = self.dbAdapterInfo['inputFile']
-       outputFileStr = self.dbAdapterInfo['outputFile']
        responseCoding = self.dbAdapterInfo['responseCoding']
-       #检查输入和输出配置目录
+       #检查输入配置,输出配置,插件工作目录
        inputDir = os.path.join(os.getcwd(),'inputTempDir')
        outputDir = os.path.join(os.getcwd(),'outputTempDir')
+       pluginDir = os.path.join(os.getcwd(),'dbAdapters')
        try:
            os.mkdir(inputDir)
        except IOError as e:
@@ -32,10 +32,10 @@ class AppConfigSchemaAdapter(BaseAdapter):
        inputFile = os.path.join(inputDir,'input_' + str(time.time()) + ".json")
        outputFile = os.path.join(outputDir,'output_' + str(time.time()) + ".json")
        #写输入配置
-       inputConfig = AdapterInputConfig(dbUrl,nameStr)
+       inputConfig = AdapterInputConfig(dbUrl,codeStr)
        MyIOTool.writeAllText(inputFile,json.dumps(inputConfig.toDict(),indent=4))
        #运行外部程序获得数据库结构
-       nowCmd = cmdStr.format(input=inputFile,output=outputFile)
+       nowCmd = cmdStr.format(local=pluginDir, input=inputFile, output=outputFile)
        print('db command:' + nowCmd)
        proc = subprocess.Popen(nowCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=-1)
        proc.wait()

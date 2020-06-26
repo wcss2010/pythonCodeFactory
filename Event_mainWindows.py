@@ -50,7 +50,7 @@ class Event_mainWindow(object):
   
   def initConfig(self):
     #初始化的例子
-    self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','command':'python3 xxx.py {input} {output}','responseCoding':'gbk','inputFile':'input.json','outputFile':'output.json'}}
+    self.configObj['adapters'] = {'xxxxCode':{'title':'xxxDB','code':'xxxxCode','command':'python3 {local}/xxx.py {input} {output}','responseCoding':'utf8'}}
     self.configObj['codeFileExtName'] = '.cs'
     self.configObj['classNameBefore'] = 't'
     self.configObj['classNameAfter'] = 'Object'
@@ -278,7 +278,7 @@ class Event_mainWindow(object):
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnDownloadInputTempleteClicked(self,e):
-    inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxdb")    
+    inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxcode")    
     inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置",self.configObj["dialogRootDir"],"输入模板[JSON](*.json)")
     MyIOTool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")

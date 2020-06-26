@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.4</string>
+   <string>简易数据库代码生成器V1.4.1 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -222,12 +222,12 @@
      <rect>
       <x>1080</x>
       <y>70</y>
-      <width>51</width>
+      <width>61</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>关于</string>
+     <string>关于我</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnMakeCode">
