@@ -1,11 +1,10 @@
 {
     "adapters": {
-        "MySQLDBCode": {
-            "title": "MySql",
-            "command": "python3 xxx.py {input} {output}",
-            "inputFile": "input.json",
-            "outputFile": "output.json",
-            "responseCoding": "gbk"
+        "xxxxCode": {
+            "title": "xxxDB",
+            "code": "xxxxCode",
+            "command": "python3 {local}/xxx.py {input} {output}",
+            "responseCoding": "utf8"
         }
     },
     "codeFileExtName": ".cs",
