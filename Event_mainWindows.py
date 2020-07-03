@@ -148,6 +148,9 @@ class Event_mainWindow(object):
     if (dbAdapter==None):
       pass
     else:
+      #打开等待提示
+      self.showWaitBox('提示','正在打开，请等待......')
+
       try:
          result,rData = dbAdapter.getTables(self.mainUI.txtDBUrl.toPlainText())
          print('Result:' + result)
@@ -178,10 +181,16 @@ class Event_mainWindow(object):
       except Exception as e:
         print('error:' + str(e))
         QMessageBox.information(None,"错误","打开数据库错误！错误输出：" + str(e))
+      
+      #关闭等待
+      self.hideWaitBox()
 
   def btnMakeCodeClicked(self,e):
     if self.nodeModels.rowCount() >= 1:
       if len(self.mainUI.tvTables.selectedIndexes()) >= 1:
+          #显示等待
+          self.showWaitBox('提示','正在生成,请等待......')
+
           #获得单表数据
           index = self.mainUI.tvTables.selectedIndexes()[0]
           crawler = index.model().itemFromIndex(index)
@@ -214,12 +223,18 @@ class Event_mainWindow(object):
             except Exception as ex:
               print(ex)
               QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(ex))
+          
+          #关闭等待
+          self.hideWaitBox()
   
   def compileJS(self,script,tableData):
     return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,self.configObj).execute()
 
   def btnMakeAllCodeClicked(self,e):
     if self.nodeModels.rowCount() >= 1:
+      #显示等待
+      self.showWaitBox('提示','正在生成，请等待......')
+
       try:
         #选择路径
         destPath=QFileDialog.getExistingDirectory(None,"请选择保存位置！",self.configObj["dialogRootDir"])
@@ -262,6 +277,9 @@ class Event_mainWindow(object):
       except Exception as vv:
         print(vv)
         QMessageBox.information(None,"错误","代码生成错误！错误输出：" + str(vv))
+
+      #关闭等待
+      self.hideWaitBox()
   
   def btnHelpClicked(self,e):
     QMessageBox.information(None,'关于','简易数据库代码生成器\n本软件基于Python3.7+PyQT5+JS2Py+NumPy编写！')
