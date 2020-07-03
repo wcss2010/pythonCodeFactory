@@ -4,7 +4,7 @@ import os
 import pathlib
 import json
 
-class MyIOTool(object):
+class iotool(object):
     '''
       读入所有文本
     '''
