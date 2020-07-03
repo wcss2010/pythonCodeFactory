@@ -1,9 +1,7 @@
 #-*- coding:utf-8 -*-
 import sys
 import os
-import shutil
 import sqlite3
-import pathlib
 from dbAdapters.BaseAdapters import *
 
 class SQLiteSchemaAdapter(BaseAdapter):
