@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
-from UtilTool import *
+from globaltool import *
 from JsCompile import *
 from dbAdapters.BaseAdapters import *
 from dbAdapters.SQLiteSchemaAdapters import *
@@ -41,7 +41,7 @@ class Event_mainWindow(object):
     if pathlib.Path(self.configPath).exists():
       #读入数据
       try:
-        jsonStr = MyIOTool.readAllText(self.configPath)
+        jsonStr = iotool.readAllText(self.configPath)
         self.configObj = json.loads(jsonStr)
       except Exception as exx:
         self.initConfig()        
@@ -57,7 +57,7 @@ class Event_mainWindow(object):
     self.configObj['classNamespace'] = 'com.example'
     self.configObj['dialogRootDir'] = '~/'
     #写入数据
-    MyIOTool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
+    iotool.writeAllText(self.configPath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
     self.mainUI.cbxDBAdapters.clear()
@@ -95,7 +95,7 @@ class Event_mainWindow(object):
     self.nodeModels = QStandardItemModel()
     #加载配置文件
     if (pathlib.Path(self.configPath).exists()):
-        self.mainUI.txtConfig.setText(MyIOTool.readAllText(self.configPath))
+        self.mainUI.txtConfig.setText(iotool.readAllText(self.configPath))
     #检查是否脚本没有创建
     scriptDir = os.path.join(os.getcwd(),'scripts')
     if (pathlib.Path(scriptDir).exists()):
@@ -114,7 +114,7 @@ class Event_mainWindow(object):
           except Exception as e:
             print(e)
       else:
-        MyIOTool.writeAllText(self.normalScriptFile)
+        iotool.writeAllText(self.normalScriptFile)
     #初始化实体和DAO代码脚本
     self.entityAndDAOScriptFile = os.path.join(scriptDir,"entityanddao.js")
     if (pathlib.Path(self.entityAndDAOScriptFile).exists()):
@@ -126,10 +126,10 @@ class Event_mainWindow(object):
           except Exception as e:
             print(e)
       else:
-        MyIOTool.writeAllText(self.entityAndDAOScriptFile)
+        iotool.writeAllText(self.entityAndDAOScriptFile)
     #显示脚本内容
-    self.mainUI.txtNormalScript.setText(MyIOTool.readAllText(self.normalScriptFile))
-    self.mainUI.txtEntityAndDAOScript.setText(MyIOTool.readAllText(self.entityAndDAOScriptFile))
+    self.mainUI.txtNormalScript.setText(iotool.readAllText(self.normalScriptFile))
+    self.mainUI.txtEntityAndDAOScript.setText(iotool.readAllText(self.entityAndDAOScriptFile))
   
   def btnOpenDBClicked(self,e):
     self.mainUI.tvTables.setModel(None)
@@ -180,8 +180,8 @@ class Event_mainWindow(object):
             pass
           else:
             #载入脚本代码
-            normalScript = MyIOTool.readAllText(self.normalScriptFile)
-            entityAndDAOScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
+            normalScript = iotool.readAllText(self.normalScriptFile)
+            entityAndDAOScript = iotool.readAllText(self.entityAndDAOScriptFile)
             #编译执行
             try:
               normalDisplayText = ''
@@ -231,7 +231,7 @@ class Event_mainWindow(object):
           classAfterName = self.configObj["classNameAfter"]
           codeFileExtName = self.configObj["codeFileExtName"]
           #读入实体和DAO脚本
-          entityScript = MyIOTool.readAllText(self.entityAndDAOScriptFile)
+          entityScript = iotool.readAllText(self.entityAndDAOScriptFile)
           for rowIndex in range(0,self.nodeModels.rowCount()):
             itemRow = self.nodeModels.item(rowIndex)
             if itemRow==None or itemRow.data()==None:
@@ -244,7 +244,7 @@ class Event_mainWindow(object):
                 entityResult = json.loads(self.compileJS(entityScript,tableData))
                 for kkk,vvv in entityResult.items():
                   destFile = os.path.join(destCodePath,kkk + codeFileExtName)
-                  MyIOTool.writeAllText(destFile,vvv)
+                  iotool.writeAllText(destFile,vvv)
           QMessageBox.information(None,"提示","代码生成完成！")
       except Exception as vv:
         print(vv)
@@ -255,24 +255,24 @@ class Event_mainWindow(object):
 
   def btnSaveNormalScriptClicked(self,e):
     try:
-      MyIOTool.writeAllText(self.normalScriptFile,self.mainUI.txtNormalScript.toPlainText())
+      iotool.writeAllText(self.normalScriptFile,self.mainUI.txtNormalScript.toPlainText())
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveEntityAndDAOScriptClicked(self,e):
     try:
-      MyIOTool.writeAllText(self.entityAndDAOScriptFile,self.mainUI.txtEntityAndDAOScript.toPlainText())
+      iotool.writeAllText(self.entityAndDAOScriptFile,self.mainUI.txtEntityAndDAOScript.toPlainText())
       QMessageBox.information(None,"提示","保存完成!")
     except IOError as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
 
   def btnSaveConfigClicked(self,e):
     try:
-      MyIOTool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
+      iotool.writeAllText(self.configPath,self.mainUI.txtConfig.toPlainText())
       self.loadConfig()
       self.loadAdapterList()
-      self.mainUI.txtConfig.setText(MyIOTool.readAllText(self.configPath))
+      self.mainUI.txtConfig.setText(iotool.readAllText(self.configPath))
       QMessageBox.information(None,"提示","保存完成!")
     except Exception as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
@@ -280,7 +280,7 @@ class Event_mainWindow(object):
   def btnDownloadInputTempleteClicked(self,e):
     inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxcode")    
     inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置",self.configObj["dialogRootDir"],"输入模板[JSON](*.json)")
-    MyIOTool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
+    iotool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
   
   def btnDownloadOutputTempleteClicked(self,e):
@@ -292,12 +292,12 @@ class Event_mainWindow(object):
     tempTable.columns.append(tempNameField)
     tempDB.tables.append(tempTable)
     outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置",self.configObj["dialogRootDir"],"输出模板[JSON](*.json)")
-    MyIOTool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
+    iotool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
 
   def btnDownloadJSClicked(self,e):    
     inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择脚本模板保存位置",self.configObj["dialogRootDir"],"JS脚本[JS](*.js)")
-    MyIOTool.writeAllText(inputFile,MyIOTool.readAllText(os.path.join(os.getcwd(),"templete.js")))
+    iotool.writeAllText(inputFile,iotool.readAllText(os.path.join(os.getcwd(),"templete.js")))
     QMessageBox.information(None,"提示","保存完成！")
 
   def btnOpenAttachDirClicked(self,e):

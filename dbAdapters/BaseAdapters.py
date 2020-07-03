@@ -2,7 +2,7 @@
 import sys
 import os
 import shutil
-import UtilTool
+import globaltool
 
 class BaseAdapter(object):
    def initAdapter(self,adapterInfo):

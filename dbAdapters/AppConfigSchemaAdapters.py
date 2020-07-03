@@ -2,7 +2,7 @@
 import sys
 import os
 import shutil
-from UtilTool import *
+from globaltool import *
 import pathlib
 from dbAdapters.BaseAdapters import *
 import time
