@@ -33,7 +33,7 @@ class AppConfigSchemaAdapter(BaseAdapter):
        outputFile = os.path.join(outputDir,'output_' + str(time.time()) + ".json")
        #写输入配置
        inputConfig = AdapterInputConfig(dbUrl,codeStr)
-       MyIOTool.writeAllText(inputFile,json.dumps(inputConfig.toDict(),indent=4))
+       iotool.writeAllText(inputFile,json.dumps(inputConfig.toDict(),indent=4))
        #运行外部程序获得数据库结构
        nowCmd = cmdStr.format(local=pluginDir, input=inputFile, output=outputFile)
        print('db command:' + nowCmd)
@@ -49,5 +49,5 @@ class AppConfigSchemaAdapter(BaseAdapter):
        print('db command result:' + result)
        runResult = {}
        if pathlib.Path(outputFile).exists():
-           runResult = json.loads(MyIOTool.readAllText(outputFile))
+           runResult = json.loads(iotool.readAllText(outputFile))
        return result,runResult
