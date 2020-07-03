@@ -97,6 +97,8 @@ class Event_mainWindow(object):
     self.mainUI.btnOpenAttachDir.clicked.connect(self.btnOpenAttachDirClicked)
     self.mainUI.btnOpenPluginDir.clicked.connect(self.btnOpenPluginDirClicked)
     self.mainUI.btnOpenScriptDir.clicked.connect(self.btnOpenScriptDirClicked)
+    self.mainUI.txtNormalCodeSearch.textChanged.connect(self.txtNormalCodeSearchTextChanged)
+    self.mainUI.txtEntityAndDAOCodeSearch.textChanged.connect(self.txtEntityAndDAOCodeSearchTextChanged)
 
   def initData(self):
     self.nodeModels = QStandardItemModel()
@@ -310,6 +312,14 @@ class Event_mainWindow(object):
     inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择脚本模板保存位置",self.configObj["dialogRootDir"],"JS脚本[JS](*.js)")
     iotool.writeAllText(inputFile,iotool.readAllText(cfenv.templeteScriptFile))
     QMessageBox.information(None,"提示","保存完成！")
+
+  def txtNormalCodeSearchTextChanged(self):
+    text = self.mainUI.txtNormalCodeSearch.toPlainText()
+    self.mainUI.txtNormalCodeSearch.find(text,QTextDocument.FindCaseSensitively)
+
+  def txtEntityAndDAOCodeSearchTextChanged(self):
+    text = self.mainUI.txtEntityAndDAOCodeSearch.toPlainText()
+    self.mainUI.txtEntityAndDAOCodeSearch.find(text,QTextDocument.FindCaseSensitively)
 
   def btnOpenAttachDirClicked(self,e):
     try:
