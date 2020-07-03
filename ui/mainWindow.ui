@@ -74,7 +74,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtNormalCodeSearch">
+     <widget class="QLineEdit" name="txtNormalCodeSearch">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -102,7 +102,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QTextEdit" name="txtEntityAndDAOCodeSearch">
+     <widget class="QLineEdit" name="txtEntityAndDAOCodeSearch">
       <property name="geometry">
        <rect>
         <x>10</x>
