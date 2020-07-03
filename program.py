@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 import sys
 import os
-import pathlib
+from globaltool import *
 
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.uic.properties import QtGui
@@ -9,6 +9,14 @@ from ui.Ui_mainWindow import Ui_MainWindow
 from Event_mainWindows import Event_mainWindow
 
 if __name__ == '__main__':
+   #初始化目录
+   cfenv.initDirs()
+   print("Bin:" + cfenv.binDir)
+   print("Data:" + cfenv.dataDir)
+   print("dbPlugin:" + cfenv.dbPluginDir)
+   print("script:" + cfenv.scriptDir)
+   print("attach:" + cfenv.attachDir)
+   #启动程序
    app = QApplication(sys.argv)
    MainWindow = QMainWindow()
    ui = Ui_MainWindow()

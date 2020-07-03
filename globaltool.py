@@ -6,33 +6,31 @@ import json
 import base64
 
 class cfenv(object):
-    def __init__(self):
-        super().__init__()
-        cfenv.paths = self
-        self.rootDir = pathlib.Path(os.getcwd()).parent
-        self.binDir = os.path.join(self.rootDir,'bin')
-        self.dataDir = os.path.join(self.rootdir,'data')
-        self.dbPluginDir = os.path.join(self.dataDir,'dbPlugins')
-        self.scriptDir = os.path.join(self.dataDir,'scripts')
-        self.attachDir = os.path.join(self.dataDir,'attachs')
+    def initDirs():
+        cfenv.rootDir = pathlib.Path(os.getcwd()).parent
+        cfenv.binDir = os.path.join(cfenv.rootDir,'bin')
+        cfenv.dataDir = os.path.join(cfenv.rootDir,'data')
+        cfenv.dbPluginDir = os.path.join(cfenv.dataDir,'dbPlugins')
+        cfenv.scriptDir = os.path.join(cfenv.dataDir,'scripts')
+        cfenv.attachDir = os.path.join(cfenv.dataDir,'attachs')
         try:
-            os.mkdir(self.binDir)
+            os.mkdir(cfenv.binDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(self.dataDir)
+            os.mkdir(cfenv.dataDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(self.dbPluginDir)
+            os.mkdir(cfenv.dbPluginDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(self.scriptDir)
+            os.mkdir(cfenv.scriptDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(self.attachDir)
+            os.mkdir(cfenv.attachDir)
         except Exception as ex1:
             pass
 
