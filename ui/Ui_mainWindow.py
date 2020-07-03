@@ -154,7 +154,7 @@ class Ui_MainWindow(object):
         self.twPages.setTabText(self.twPages.indexOf(self.btnConfigEditor), _translate("MainWindow", "编辑配置文件"))
         self.btnHelp.setText(_translate("MainWindow", "关于我"))
         self.btnMakeCode.setText(_translate("MainWindow", "生成代码"))
-        self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码到文件"))
+        self.btnMakeAllCode.setText(_translate("MainWindow", "生成所有代码文件"))
         self.btnOpenDB.setText(_translate("MainWindow", "打开数据库"))
         self.btnOpenAttachDir.setText(_translate("MainWindow", "打开附件目录"))
         self.btnOpenPluginDir.setText(_translate("MainWindow", "打开插件目录"))
