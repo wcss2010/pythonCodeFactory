@@ -48,6 +48,7 @@ class cfenv(object):
 class stringbuffer(object):
     def __init__(self):
         super().__init__()
+        stringbuffer.enterFlag = '{<%enter%>}'
         self.clear()
 
     '''
@@ -65,10 +66,10 @@ class stringbuffer(object):
         return self
 
     '''
-       添加文字并添加\n
+       添加文字并添加换行符
     '''
     def appendLine(self,cnt):
-        self.append(cnt).append('\n')
+        self.append(cnt).append(stringbuffer.enterFlag)
         return self
 
     '''
@@ -82,25 +83,24 @@ class stringbuffer(object):
        输出文字
     '''
     def toString(self):
-        return self.__buf
+        return self.__buf.replace(stringbuffer.enterFlag,'\n')
 
     '''
        解析Base64编码并放入缓冲区
     '''
     def fromB64String(self,b64String):
-        self.__buf = base64.b64decode(b64String)
-        return self
+        return self.fromString(str(base64.b64decode(b64String), "utf-8"))        
 
     '''
        将内容编译为Base64文字并输出
     '''
     def toB64String(self):
-        return base64.b64encode(self.toString())
+        return str(base64.b64encode(self.__buf.encode("utf-8")), "utf-8")
 
 '''
     Json代码编辑类
 '''
-class jsoncodebuilder(object):
+class jsoncodewriter(object):
     def __init__(self):
         super().__init__()
         self.__buf = {}
