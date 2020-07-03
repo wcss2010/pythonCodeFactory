@@ -1,6 +1,9 @@
 #-*- coding:utf-8 -*-
 import sys
 import os
+import shutil
+from globaltool import *
+import pathlib
 
 class BaseAdapter(object):
    def initAdapter(self,adapterInfo):

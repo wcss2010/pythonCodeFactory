@@ -72,16 +72,19 @@ class Event_mainWindow(object):
     sqliteAdapter = SQLiteSchemaAdapter()
     sqliteAdapter.initAdapter(None)
     self.mainUI.cbxDBAdapters.addItem('Sqlite数据库(内置)',userData=sqliteAdapter)
-    #外置
-    if self.configObj.get('dbPlugins') == None:
-       pass
-    else:
-       self.adapterList = self.configObj.get('dbPlugins')
-       print(self.adapterList)
-       for k,v in self.adapterList.items():
-         appAdapter = AppConfigSchemaAdapter()
-         appAdapter.initAdapter(v)
-         self.mainUI.cbxDBAdapters.addItem(v['title'] + '(插件)',userData=appAdapter)
+    try:
+      #外置
+      if self.configObj.get('dbPlugins') == None:
+        pass
+      else:
+        self.adapterList = self.configObj.get('dbPlugins')
+        print(self.adapterList)
+        for k,v in self.adapterList.items():
+          appAdapter = AppConfigSchemaAdapter()
+          appAdapter.initAdapter(v)
+          self.mainUI.cbxDBAdapters.addItem(v['title'] + '(插件)',userData=appAdapter)
+    except Exception as ex:
+      print(ex)
   
   def setEvents(self):    
     self.mainUI.btnOpenDB.clicked.connect(self.btnOpenDBClicked)
