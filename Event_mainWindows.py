@@ -23,6 +23,8 @@ class Event_mainWindow(object):
     self.mainUI = mainUIDefine
     #屏蔽最大化按钮
     self.mainWindow.setFixedSize(1167, 635)
+    #隐藏提示框
+    self.hideWaitBox()
     #生成脚本路径
     self.scriptDir = os.path.join(os.getcwd(),"scripts")
     #生成配置文件路径
@@ -131,6 +133,14 @@ class Event_mainWindow(object):
     self.mainUI.txtNormalScript.setText(iotool.readAllText(self.normalScriptFile))
     self.mainUI.txtEntityAndDAOScript.setText(iotool.readAllText(self.entityAndDAOScriptFile))
   
+  def showWaitBox(self,title,content):
+    self.mainUI.plWaitBox.setTitle('    ' + title)
+    self.mainUI.lblWaitText.setText(content)
+    self.mainUI.plWaitBox.move((1167-350)/2,(635-150)/2)
+
+  def hideWaitBox(self):
+    self.mainUI.plWaitBox.move(2000,2000)
+
   def btnOpenDBClicked(self,e):
     self.mainUI.tvTables.setModel(None)
     dbAdapter = self.mainUI.cbxDBAdapters.currentData()
