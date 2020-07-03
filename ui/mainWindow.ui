@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.4.1 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
+   <string>简易数据库代码生成器V1.4.2 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -70,7 +70,17 @@
         <x>10</x>
         <y>10</y>
         <width>781</width>
-        <height>421</height>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtNormalCodeSearch">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>781</width>
+        <height>31</height>
        </rect>
       </property>
      </widget>
@@ -88,7 +98,17 @@
         <x>10</x>
         <y>10</y>
         <width>781</width>
-        <height>421</height>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtEntityAndDAOCodeSearch">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>781</width>
+        <height>31</height>
        </rect>
       </property>
      </widget>
@@ -327,6 +347,40 @@
     <property name="text">
      <string>打开脚本目录</string>
     </property>
+   </widget>
+   <widget class="QGroupBox" name="plWaitBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>420</y>
+      <width>341</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="lblWaitText">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>301</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>正在XX，请等待......</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
