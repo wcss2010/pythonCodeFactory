@@ -68,6 +68,10 @@ class Event_mainWindow(object):
     self.mainUI.btnOpenScriptDir.clicked.connect(self.btnOpenScriptDirClicked)
     self.mainUI.txtNormalCodeSearch.textChanged.connect(self.txtNormalCodeSearchTextChanged)
     self.mainUI.txtEntityAndDAOCodeSearch.textChanged.connect(self.txtEntityAndDAOCodeSearchTextChanged)
+    self.mainUI.btnEADBeforeFind.clicked.connect(self.btnEADBeforeFindClicked)
+    self.mainUI.btnEADAfterFind.clicked.connect(self.btnEADAfterFindClicked)
+    self.mainUI.btnNormalBeforeFind.clicked.connect(self.btnNormalBeforeFindClicked)
+    self.mainUI.btnNormalAfterFind.clicked.connect(self.btnNormalAfterFindClicked)
 
   def initData(self):
     self.nodeModels = QStandardItemModel()
@@ -312,7 +316,35 @@ class Event_mainWindow(object):
     except Exception as ex:
       print(ex)
 
+  def btnNormalBeforeFindClicked(self,e):
+    try:
+      text = self.mainUI.txtNormalCodeSearch.text()
+      self.mainUI.txtNormalText.find(text,QTextDocument.FindBackward)
+    except Exception as ex:
+      print(ex)
+
+  def btnNormalAfterFindClicked(self,e):
+    try:
+      text = self.mainUI.txtNormalCodeSearch.text()
+      self.mainUI.txtNormalText.find(text)
+    except Exception as ex:
+      print(ex)
+
   def txtEntityAndDAOCodeSearchTextChanged(self):
+    try:
+      text = self.mainUI.txtEntityAndDAOCodeSearch.text()
+      self.mainUI.txtEntityAndDAOText.find(text)
+    except Exception as ex:
+      print(ex)
+
+  def btnEADBeforeFindClicked(self,e):
+    try:
+      text = self.mainUI.txtEntityAndDAOCodeSearch.text()
+      self.mainUI.txtEntityAndDAOText.find(text,QTextDocument.FindBackward)
+    except Exception as ex:
+      print(ex)
+
+  def btnEADAfterFindClicked(self,e):
     try:
       text = self.mainUI.txtEntityAndDAOCodeSearch.text()
       self.mainUI.txtEntityAndDAOText.find(text)
