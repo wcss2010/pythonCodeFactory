@@ -138,11 +138,15 @@ class Ui_MainWindow(object):
         self.plWaitBox.setAlignment(QtCore.Qt.AlignCenter)
         self.plWaitBox.setObjectName("plWaitBox")
         self.lblWaitText = QtWidgets.QLabel(self.plWaitBox)
-        self.lblWaitText.setGeometry(QtCore.QRect(20, 20, 301, 111))
+        self.lblWaitText.setGeometry(QtCore.QRect(10, 30, 330, 110))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.lblWaitText.setFont(font)
-        self.lblWaitText.setStyleSheet("QLabel{color:white}")
+        self.lblWaitText.setStyleSheet("QLabel{color:white}\n"
+"QLabel{\n"
+"border-width: 1px;\n"
+"border-style: solid;\n"
+"border-color: white;}")
         self.lblWaitText.setAlignment(QtCore.Qt.AlignCenter)
         self.lblWaitText.setObjectName("lblWaitText")
         MainWindow.setCentralWidget(self.centralwidget)

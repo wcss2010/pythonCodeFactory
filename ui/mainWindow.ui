@@ -443,10 +443,10 @@ margin-top:0.5ex;
     <widget class="QLabel" name="lblWaitText">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>301</width>
-       <height>111</height>
+       <x>10</x>
+       <y>30</y>
+       <width>330</width>
+       <height>110</height>
       </rect>
      </property>
      <property name="font">
@@ -455,7 +455,11 @@ margin-top:0.5ex;
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel{color:white}</string>
+      <string notr="true">QLabel{color:white}
+QLabel{
+border-width: 1px;
+border-style: solid;
+border-color: white;}</string>
      </property>
      <property name="text">
       <string>正在XX，请等待......</string>
