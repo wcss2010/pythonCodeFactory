@@ -3,30 +3,31 @@
 //url=数据库连接代码
 //table=格式为：
 // {
-//    "tableName":"XXX"
-//    "tableType":"table"
-//    "columns":[
-//                 {"name":"ID","type":"bigint","notnull":"true","pk":"true"}
-//                 {"name":"Name","type":"nvarchar(200)","notnull":"false","pk":"false"}
-//                 {"name":"Sex","type":"nvarchar(5)","notnull":"false","pk":"false"}
-//                 {"name":"Age","type":"int","notnull":"false","pk":"false"}
+//    "tableName":"XXX"  表名
+//    "tableType":"table"  表类型
+//    "columns":[  列
+//                 {"name":"ID","type":"bigint","notnull":"true","pk":"true"}   列名，列类型，是否为空，是否为主键
+//                 {"name":"Name","type":"nvarchar(200)","notnull":"false","pk":"false"} 列名，列类型，是否为空，是否为主键
+//                 {"name":"Sex","type":"nvarchar(5)","notnull":"false","pk":"false"} 列名，列类型，是否为空，是否为主键
+//                 {"name":"Age","type":"int","notnull":"false","pk":"false"} 列名，列类型，是否为空，是否为主键
 //              ]
 // }
 //config=格式为:
 //{
-//    "dbPlugins": {
+//    "dbPlugins": {     ×数据适配器插件
 //        "xxxxCode": {
-//            "title": "xxxDB",
-//            "code": "xxxxCode",
-//            "command": "python3 {local}/xxx.py {input} {output}",
-//            "responseCoding": "utf8"
+//            "title": "xxxDB",  标题
+//            "code": "xxxxCode",  识别码
+//            "command": "python3 {local}/xxx.py {input} {output}", 命令行配置
+//            "responseCoding": "utf8"  命令行返回的字节集
 //        }
 //    },
-//    "codeFileExtName": ".cs",
-//    "classNameBefore": "t",
-//    "classNameAfter": "Object",
-//    "classNamespace": "com.example",
-//    "dialogRootDir": "~/"
+//    "codeFileExtName": ".cs",  生成文件后缀
+//    "classNameBefore": "c",   类名前缀
+//    "classNameAfter": "Entity", 类名后缀
+//    "classNamespace": "com.pythoncodefactory.DotNetClasses", 类的命名空间
+//    "dialogRootDir": "~/",   文件对话框初始目录
+//    "envDirName": "dotnet"  脚本环境目录名称
 //}
 //
 // 返回结果为一个Json字符串，格式如下：
@@ -45,7 +46,7 @@ function script(url,table,config)
    pyimport globaltool;
    //
    // （1）cfenv（环境变量）
-   //     rootDir(主目录变量) binDir(程序目录变量) dataDir(数据目录变量) dbPluginDir(插件目录变量) scriptDir(脚本目录变量) attachDir(附件目录变量)
+   //     rootDir(主目录变量) binDir(程序目录变量) dataDir(数据目录变量) dbPluginDir(插件目录变量) scriptDir(脚本目录变量) attachDir(附件目录变量) configFilePath(配置文件路径变量) backupConfigFilePath(备份配置文件路径变量) templeteScriptFile(标准的脚本模板) scriptEnvName(脚本环境目录名称) normalScriptFile(常用代码脚本路径变量) entityAndDAOScriptFile(实体和DAO代码脚本路径变量) configObj（系统配置变量）
    //  (2) stringbuffer(类似于C#中的StringBuilder)
    //     enterFlag(回车点位符变量) clear(清理函数,参数：空) append(添加字符串函数,参数：字符串) appendLine(添加字符串并在末尾加回车函数,参数：字符串) fromString(载入非Base64字符串到缓冲区,参数：字符串) toString(输出可显示字符串,参数：空) fromB64String(解码并装载Base64字符串,参数：字符串) toB64String(将缓冲区内容编码为Base64字符串,参数：空)
    //  (3) jsoncodewriter(Json代码块生成)
