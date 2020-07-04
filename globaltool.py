@@ -49,8 +49,8 @@ class cfenv(object):
                 cfenv.configObj = json.loads(jsonStr)
             except Exception as exx:
                 cfenv.initConfig()
-            else:
-                cfenv.initConfig()
+        else:
+            cfenv.initConfig()
 
         #取环境变量名称
         if cfenv.configObj.get('envDirName') == None:
