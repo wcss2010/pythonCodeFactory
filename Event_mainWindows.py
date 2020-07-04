@@ -272,6 +272,7 @@ class Event_mainWindow(object):
     try:
       iotool.writeAllText(cfenv.configFilePath,self.mainUI.txtConfig.toPlainText())
       cfenv.loadConfig()
+      cfenv.switchScriptEnv()
       self.loadAdapterList()
       self.initData()
       QMessageBox.information(None,"提示","保存完成!")

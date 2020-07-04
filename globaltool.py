@@ -45,6 +45,12 @@ class cfenv(object):
         cfenv.loadConfig()
 
         #取环境变量名称
+        cfenv.switchScriptEnv()
+    
+    '''
+        切换脚本环境目录
+    '''
+    def switchScriptEnv():
         if cfenv.configObj.get('envDirName') == None:
             cfenv.__sEnvName = 'dotnet'
         else:
@@ -66,7 +72,7 @@ class cfenv(object):
         #初始化脚本文件路径        
         cfenv.normalScriptFile = os.path.join(cfenv.scriptDir,"normal.js")
         cfenv.entityAndDAOScriptFile = os.path.join(cfenv.scriptDir,"entityanddao.js")
-    
+
     '''
         载入配置文件
     '''
