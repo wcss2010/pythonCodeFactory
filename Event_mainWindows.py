@@ -301,12 +301,18 @@ class Event_mainWindow(object):
     QMessageBox.information(None,"提示","保存完成！")
 
   def txtNormalCodeSearchTextChanged(self):
-    text = self.mainUI.txtNormalCodeSearch.text()
-    self.mainUI.txtNormalText.find(text,QTextDocument.FindCaseSensitively)
+    try:
+      text = self.mainUI.txtNormalCodeSearch.text()
+      self.mainUI.txtNormalText.find(text,QTextDocument.FindCaseSensitively)
+    except Exception as ex:
+      print(ex)
 
   def txtEntityAndDAOCodeSearchTextChanged(self):
-    text = self.mainUI.txtEntityAndDAOCodeSearch.text()
-    self.mainUI.txtEntityAndDAOText.find(text,QTextDocument.FindCaseSensitively)
+    try:
+      text = self.mainUI.txtEntityAndDAOCodeSearch.text()
+      self.mainUI.txtEntityAndDAOText.find(text,QTextDocument.FindCaseSensitively)
+    except Exception as ex:
+      print(ex)
 
   def btnOpenAttachDirClicked(self,e):
     try:
