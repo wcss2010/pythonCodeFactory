@@ -205,7 +205,13 @@ class Event_mainWindow(object):
           self.hideWaitBox()
   
   def compileJS(self,script,tableData):
-    return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,cfenv.configObj).execute()
+    dbUrl = self.mainUI.txtDBUrl.toPlainText()
+    dbAdapter = self.mainUI.cbxDBAdapters.currentData()
+    if (dbAdapter==None):
+      return '{}'
+    else:
+      dbConfig = dbAdapter.dbAdapterInfo
+      return JsCompiler(script,dbUrl,tableData,dbConfig).execute()
 
   def btnMakeAllCodeClicked(self,e):
     if self.nodeModels.rowCount() >= 1:
