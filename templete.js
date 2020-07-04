@@ -46,7 +46,7 @@ function script(url,table,config)
    pyimport globaltool;
    //
    // （1）cfenv（环境变量）
-   //     rootDir(主目录变量) binDir(程序目录变量) dataDir(数据目录变量) dbPluginDir(插件目录变量) scriptDir(脚本目录变量) attachDir(附件目录变量) configFilePath(配置文件路径变量) backupConfigFilePath(备份配置文件路径变量) templeteScriptFile(标准的脚本模板) scriptEnvName(脚本环境目录名称) normalScriptFile(常用代码脚本路径变量) entityAndDAOScriptFile(实体和DAO代码脚本路径变量) configObj（系统配置变量）
+   //     rootDir(主目录变量) binDir(程序目录变量) dataDir(数据目录变量) dbPluginDir(插件目录变量) scriptDir(脚本目录变量) attachDir(附件目录变量) configFilePath(配置文件路径变量) backupConfigFilePath(备份配置文件路径变量) templeteScriptFile(标准的脚本模板) scriptEnvDir(脚本环境目录变量) normalScriptFile(常用代码脚本路径变量) entityAndDAOScriptFile(实体和DAO代码脚本路径变量) configObj（系统配置变量）
    //  (2) stringbuffer(类似于C#中的StringBuilder)
    //     enterFlag(回车点位符变量) clear(清理函数,参数：空) append(添加字符串函数,参数：字符串) appendLine(添加字符串并在末尾加回车函数,参数：字符串) fromString(载入非Base64字符串到缓冲区,参数：字符串) toString(输出可显示字符串,参数：空) fromB64String(解码并装载Base64字符串,参数：字符串) toB64String(将缓冲区内容编码为Base64字符串,参数：空)
    //  (3) jsoncodewriter(Json代码块生成)
