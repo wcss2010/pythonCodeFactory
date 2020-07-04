@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.4.2 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
+   <string>简易数据库代码生成器V1.4.3 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -70,7 +70,7 @@
         <x>10</x>
         <y>10</y>
         <width>781</width>
-        <height>381</height>
+        <height>390</height>
        </rect>
       </property>
      </widget>
@@ -78,10 +78,13 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>400</y>
+        <y>410</y>
         <width>781</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>请输入要查询的关键字！</string>
       </property>
      </widget>
     </widget>
@@ -98,7 +101,7 @@
         <x>10</x>
         <y>10</y>
         <width>781</width>
-        <height>381</height>
+        <height>390</height>
        </rect>
       </property>
      </widget>
@@ -106,10 +109,13 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>400</y>
+        <y>410</y>
         <width>781</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>请输入要查询的关键字！</string>
       </property>
      </widget>
     </widget>
