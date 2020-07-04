@@ -107,7 +107,10 @@ class Event_mainWindow(object):
     self.mainUI.plWaitBox.setTitle('    ' + title)
     self.mainUI.lblWaitText.setText(content)
     self.mainUI.plWaitBox.move((1167-350)/2,(635-150)/2)
-    QApplication.processEvents()
+    try:
+      QApplication.processEvents()
+    except Exception as ex:
+      print(ex)
 
   def hideWaitBox(self):
     self.mainUI.plWaitBox.move(2000,2000)
