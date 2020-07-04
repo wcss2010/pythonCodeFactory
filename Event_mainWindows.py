@@ -108,7 +108,7 @@ class Event_mainWindow(object):
     self.mainUI.txtEntityAndDAOScript.setText(iotool.readAllText(cfenv.entityAndDAOScriptFile))
   
   def showWaitBox(self,title,content):
-    self.mainUI.plWaitBox.setTitle('    ' + title)
+    self.mainUI.plWaitBox.setTitle(title)
     self.mainUI.lblWaitText.setText(content)
     self.mainUI.plWaitBox.move((1167-350)/2,(635-150)/2)
     try:

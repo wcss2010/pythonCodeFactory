@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.4.3 项目地址: https://github.com/wcss2010/pythoncodefactory</string>
+   <string>简易数据库代码生成器V1.4.4  本项目地址: https://github.com/wcss2010/pythoncodefactory</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -55,7 +55,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabNormal">
      <property name="currentTabText" stdset="0">
@@ -421,10 +421,17 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox  {background:rgb(164, 164, 164);}
+QGroupBox  {color:white;}</string>
     </property>
     <property name="title">
-     <string/>
+     <string>xxxx</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <widget class="QLabel" name="lblWaitText">
      <property name="geometry">
@@ -439,6 +446,9 @@
       <font>
        <pointsize>16</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{color:white}</string>
      </property>
      <property name="text">
       <string>正在XX，请等待......</string>

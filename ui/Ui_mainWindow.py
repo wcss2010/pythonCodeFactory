@@ -125,14 +125,17 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.plWaitBox.setFont(font)
-        self.plWaitBox.setAutoFillBackground(True)
-        self.plWaitBox.setTitle("")
+        self.plWaitBox.setAutoFillBackground(False)
+        self.plWaitBox.setStyleSheet("QGroupBox  {background:rgb(164, 164, 164);}\n"
+"QGroupBox  {color:white;}")
+        self.plWaitBox.setAlignment(QtCore.Qt.AlignCenter)
         self.plWaitBox.setObjectName("plWaitBox")
         self.lblWaitText = QtWidgets.QLabel(self.plWaitBox)
         self.lblWaitText.setGeometry(QtCore.QRect(20, 20, 301, 111))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.lblWaitText.setFont(font)
+        self.lblWaitText.setStyleSheet("QLabel{color:white}")
         self.lblWaitText.setAlignment(QtCore.Qt.AlignCenter)
         self.lblWaitText.setObjectName("lblWaitText")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -145,12 +148,12 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.twPages.setCurrentIndex(1)
+        self.twPages.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.3 项目地址: https://github.com/wcss2010/pythoncodefactory"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.4  本项目地址: https://github.com/wcss2010/pythoncodefactory"))
         self.tabNormal.setProperty("currentTabText", _translate("MainWindow", "常用代码"))
         self.txtNormalCodeSearch.setPlaceholderText(_translate("MainWindow", "请输入要查询的关键字！"))
         self.btnNormalBeforeFind.setText(_translate("MainWindow", "向前找"))
@@ -177,6 +180,7 @@ class Ui_MainWindow(object):
         self.btnOpenAttachDir.setText(_translate("MainWindow", "打开附件目录"))
         self.btnOpenPluginDir.setText(_translate("MainWindow", "打开插件目录"))
         self.btnOpenScriptDir.setText(_translate("MainWindow", "打开脚本目录"))
+        self.plWaitBox.setTitle(_translate("MainWindow", "xxxx"))
         self.lblWaitText.setText(_translate("MainWindow", "正在XX，请等待......"))
 
 from jsCodeEditors import JSCodeEditor, LineCodeEditor
