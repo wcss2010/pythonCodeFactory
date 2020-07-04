@@ -54,13 +54,14 @@ class cfenv(object):
 
         #取环境变量名称
         if cfenv.configObj.get('envDirName') == None:
-            cfenv.scriptEnvName = 'dotnet'
+            cfenv.__sEnvName = 'dotnet'
         else:
-            cfenv.scriptEnvName = cfenv.configObj['envDirName']
+            cfenv.__sEnvName = cfenv.configObj['envDirName']
 
         #初始化脚本相关路径
-        cfenv.scriptDir = os.path.join(cfenv.dataDir,cfenv.scriptEnvName,'scripts')
-        cfenv.attachDir = os.path.join(cfenv.dataDir,cfenv.scriptEnvName,'attachs')
+        cfenv.scriptEnvDir = os.path.join(cfenv.dataDir,cfenv.__sEnvName)
+        cfenv.scriptDir = os.path.join(cfenv.scriptEnvDir,'scripts')
+        cfenv.attachDir = os.path.join(cfenv.scriptEnvDir,'attachs')
         try:
             os.makedirs(cfenv.scriptDir)
         except Exception as ex1:

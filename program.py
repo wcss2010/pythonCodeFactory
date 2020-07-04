@@ -14,6 +14,7 @@ if __name__ == '__main__':
    print("Bin:" + cfenv.binDir)
    print("Data:" + cfenv.dataDir)
    print("dbPlugin:" + cfenv.dbPluginDir)
+   print("scriptEnv:" + cfenv.scriptEnvDir)
    print("script:" + cfenv.scriptDir)
    print("attach:" + cfenv.attachDir)
    print("configFile:" + cfenv.configFilePath)
