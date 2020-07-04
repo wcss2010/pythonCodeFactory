@@ -50,7 +50,7 @@ class JavaScriptHighlighter(QSyntaxHighlighter):
     def initializeFormats():
         baseFormat = QTextCharFormat()
         baseFormat.setFontFamily("courier")
-        baseFormat.setFontPointSize(12)
+        baseFormat.setFontPointSize(10)
         for name, color in (("normal", Qt.black),
                 ("keyword", Qt.darkRed),
                 ("decorator", Qt.darkBlue), ("comment", Qt.darkGreen),
