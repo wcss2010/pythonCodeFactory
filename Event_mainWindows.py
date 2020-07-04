@@ -308,14 +308,14 @@ class Event_mainWindow(object):
   def txtNormalCodeSearchTextChanged(self):
     try:
       text = self.mainUI.txtNormalCodeSearch.text()
-      self.mainUI.txtNormalText.find(text,QTextDocument.FindCaseSensitively)
+      self.mainUI.txtNormalText.find(text)
     except Exception as ex:
       print(ex)
 
   def txtEntityAndDAOCodeSearchTextChanged(self):
     try:
       text = self.mainUI.txtEntityAndDAOCodeSearch.text()
-      self.mainUI.txtEntityAndDAOText.find(text,QTextDocument.FindCaseSensitively)
+      self.mainUI.txtEntityAndDAOText.find(text)
     except Exception as ex:
       print(ex)
 

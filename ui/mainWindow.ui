@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1156</width>
+    <width>1168</width>
     <height>635</height>
    </rect>
   </property>
@@ -55,7 +55,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabNormal">
      <property name="currentTabText" stdset="0">
@@ -79,12 +79,38 @@
        <rect>
         <x>10</x>
         <y>410</y>
-        <width>781</width>
+        <width>591</width>
         <height>31</height>
        </rect>
       </property>
       <property name="placeholderText">
        <string>请输入要查询的关键字！</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnNormalBeforeFind">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>410</y>
+        <width>81</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>向前找</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnNormalAfterFind">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>410</y>
+        <width>81</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>向后找</string>
       </property>
      </widget>
     </widget>
@@ -110,12 +136,38 @@
        <rect>
         <x>10</x>
         <y>410</y>
-        <width>781</width>
+        <width>590</width>
         <height>31</height>
        </rect>
       </property>
       <property name="placeholderText">
        <string>请输入要查询的关键字！</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEADAfterFind">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>410</y>
+        <width>81</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>向后找</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEADBeforeFind">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>410</y>
+        <width>81</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>向前找</string>
       </property>
      </widget>
     </widget>
@@ -402,7 +454,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1156</width>
+     <width>1168</width>
      <height>36</height>
     </rect>
    </property>
