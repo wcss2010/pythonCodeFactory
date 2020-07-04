@@ -42,7 +42,7 @@ class cfenv(object):
         cfenv.templeteScriptFile = os.path.join(cfenv.rootDir,'templete.js')
 
         #载入配置
-        cvenv.loadConfig()
+        cfenv.loadConfig()
 
         #取环境变量名称
         if cfenv.configObj.get('envDirName') == None:
