@@ -270,7 +270,7 @@ class Event_mainWindow(object):
   def btnSaveConfigClicked(self,e):
     try:
       iotool.writeAllText(cfenv.configFilePath,self.mainUI.txtConfig.toPlainText())
-      self.loadConfig()
+      cfenv.loadConfig()
       self.loadAdapterList()
       self.mainUI.txtConfig.setText(iotool.readAllText(cfenv.configFilePath))
       QMessageBox.information(None,"提示","保存完成!")

@@ -42,15 +42,7 @@ class cfenv(object):
         cfenv.templeteScriptFile = os.path.join(cfenv.rootDir,'templete.js')
 
         #载入配置
-        if pathlib.Path(cfenv.configFilePath).exists():
-            #读入数据
-            try:
-                jsonStr = iotool.readAllText(cfenv.configFilePath)
-                cfenv.configObj = json.loads(jsonStr)
-            except Exception as exx:
-                cfenv.initConfig()
-        else:
-            cfenv.initConfig()
+        cvenv.loadConfig()
 
         #取环境变量名称
         if cfenv.configObj.get('envDirName') == None:
@@ -75,6 +67,21 @@ class cfenv(object):
         cfenv.normalScriptFile = os.path.join(cfenv.scriptDir,"normal.js")
         cfenv.entityAndDAOScriptFile = os.path.join(cfenv.scriptDir,"entityanddao.js")
     
+    '''
+        载入配置文件
+    '''
+    def loadConfig():
+        #载入配置
+        if pathlib.Path(cfenv.configFilePath).exists():
+            #读入数据
+            try:
+                jsonStr = iotool.readAllText(cfenv.configFilePath)
+                cfenv.configObj = json.loads(jsonStr)
+            except Exception as exx:
+                cfenv.initConfig()
+        else:
+            cfenv.initConfig()
+
     '''
         初始化配置文件,如果存在备份则使用，否则输出一个新的
     '''
