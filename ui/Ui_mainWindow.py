@@ -126,8 +126,15 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.plWaitBox.setFont(font)
         self.plWaitBox.setAutoFillBackground(False)
-        self.plWaitBox.setStyleSheet("QGroupBox  {background:rgb(164, 164, 164);}\n"
-"QGroupBox  {color:white;}")
+        self.plWaitBox.setStyleSheet("QGroupBox  {background:rgb(0, 170, 255);}\n"
+"QGroupBox  {color:white;}\n"
+"QGroupBox{\n"
+"border-width:2px;\n"
+"border-style:solid;\n"
+"border-radius: 10px;\n"
+"border-color:rgb(0, 170, 255);\n"
+"margin-top:0.5ex;\n"
+"}")
         self.plWaitBox.setAlignment(QtCore.Qt.AlignCenter)
         self.plWaitBox.setObjectName("plWaitBox")
         self.lblWaitText = QtWidgets.QLabel(self.plWaitBox)
@@ -180,7 +187,7 @@ class Ui_MainWindow(object):
         self.btnOpenAttachDir.setText(_translate("MainWindow", "打开附件目录"))
         self.btnOpenPluginDir.setText(_translate("MainWindow", "打开插件目录"))
         self.btnOpenScriptDir.setText(_translate("MainWindow", "打开脚本目录"))
-        self.plWaitBox.setTitle(_translate("MainWindow", "xxxx"))
+        self.plWaitBox.setTitle(_translate("MainWindow", "提示"))
         self.lblWaitText.setText(_translate("MainWindow", "正在XX，请等待......"))
 
 from jsCodeEditors import JSCodeEditor, LineCodeEditor

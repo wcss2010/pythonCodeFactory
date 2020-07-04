@@ -424,11 +424,18 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">QGroupBox  {background:rgb(164, 164, 164);}
-QGroupBox  {color:white;}</string>
+     <string notr="true">QGroupBox  {background:rgb(0, 170, 255);}
+QGroupBox  {color:white;}
+QGroupBox{
+border-width:2px;
+border-style:solid;
+border-radius: 10px;
+border-color:rgb(0, 170, 255);
+margin-top:0.5ex;
+}</string>
     </property>
     <property name="title">
-     <string>xxxx</string>
+     <string>提示</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
