@@ -16,6 +16,9 @@ if __name__ == '__main__':
    print("dbPlugin:" + cfenv.dbPluginDir)
    print("script:" + cfenv.scriptDir)
    print("attach:" + cfenv.attachDir)
+   print("configFile:" + cfenv.configFilePath)
+   print("backupConfigFile:" + cfenv.backupConfigFilePath)
+   print("templeteScriptFile:" + cfenv.templeteScriptFile)
    #启动程序
    app = QApplication(sys.argv)
    MainWindow = QMainWindow()
