@@ -9,8 +9,8 @@ from ui.Ui_mainWindow import Ui_MainWindow
 from Event_mainWindows import Event_mainWindow
 
 if __name__ == '__main__':
-   #初始化目录
-   cfenv.initDirs()
+   #初始化环境变量
+   cfenv.initEnvData()
    print("Bin:" + cfenv.binDir)
    print("Data:" + cfenv.dataDir)
    print("dbPlugin:" + cfenv.dbPluginDir)
