@@ -1,7 +1,7 @@
 //使用说明：
-//入口函数为 function script(url,table,config)
-//url=数据库连接代码
-//table=格式为：
+//入口函数为 function script(dbUrl,tableData,dbPluginConfig)
+//dbUrl=数据库连接代码
+//tableData=格式为：
 // {
 //    "tableName":"XXX"  表名
 //    "tableType":"table"  表类型
@@ -12,22 +12,12 @@
 //                 {"name":"Age","type":"int","notnull":"false","pk":"false"} 列名，列类型，是否为空，是否为主键
 //              ]
 // }
-//config=格式为:
+//dbPluginConfig=格式为:
 //{
-//    "dbPlugins": {     ×数据适配器插件
-//        "xxxxCode": {
 //            "title": "xxxDB",  标题
 //            "code": "xxxxCode",  识别码
 //            "command": "python3 {local}/xxx.py {input} {output}", 命令行配置
 //            "responseCoding": "utf8"  命令行返回的字节集
-//        }
-//    },
-//    "codeFileExtName": ".cs",  生成文件后缀
-//    "classNameBefore": "c",   类名前缀
-//    "classNameAfter": "Entity", 类名后缀
-//    "classNamespace": "com.pythoncodefactory.DotNetClasses", 类的命名空间
-//    "dialogRootDir": "~/",   文件对话框初始目录
-//    "envDirName": "dotnet"  脚本环境目录名称
 //}
 //
 // 返回结果为一个Json字符串，格式如下：
@@ -40,7 +30,7 @@
 //
 
 //入口函数
-function script(url,table,config)
+function script(dbUrl,tableData,dbPluginConfig)
 {
    //引用内置的Python工具集
    pyimport globaltool;
@@ -57,9 +47,9 @@ function script(url,table,config)
    //
 
    //取表名
-   var tableName = table["tableName"];
+   var tableName = tableData["tableName"];
    //取名称空间
-   var namespace = config["classNamespace"]
+   var namespace = globaltool.cfenv.configObj["classNamespace"]
    
    //JSON代码块生成
    var jsonCodeMaker = globaltool.jsoncodewriter();
@@ -81,6 +71,7 @@ function script(url,table,config)
    sb2.appendLine(globaltool.cfenv.dbPluginDir);
    sb2.appendLine(globaltool.cfenv.scriptDir);
    sb2.appendLine(globaltool.cfenv.attachDir);
+   sb2.appendLine(namespace);
 
    //代码块例子3
    var sb3 = globaltool.stringbuffer();
