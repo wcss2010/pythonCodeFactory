@@ -24,15 +24,15 @@ class cfenv(object):
         cfenv.dataDir = os.path.join(cfenv.rootDir,'data')
         cfenv.dbPluginDir = os.path.join(cfenv.dataDir,'dbPlugins')        
         try:
-            os.mkdir(cfenv.binDir)
+            os.makedirs(cfenv.binDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(cfenv.dataDir)
+            os.makedirs(cfenv.dataDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(cfenv.dbPluginDir)
+            os.makedirs(cfenv.dbPluginDir)
         except Exception as ex1:
             pass
 
@@ -62,11 +62,11 @@ class cfenv(object):
         cfenv.scriptDir = os.path.join(cfenv.dataDir,cfenv.scriptEnvName,'scripts')
         cfenv.attachDir = os.path.join(cfenv.dataDir,cfenv.scriptEnvName,'attachs')
         try:
-            os.mkdir(cfenv.scriptDir)
+            os.makedirs(cfenv.scriptDir)
         except Exception as ex1:
             pass
         try:
-            os.mkdir(cfenv.attachDir)
+            os.makedirs(cfenv.attachDir)
         except Exception as ex1:
             pass
         
