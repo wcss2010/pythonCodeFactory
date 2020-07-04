@@ -24,47 +24,13 @@ class Event_mainWindow(object):
     #屏蔽最大化按钮
     self.mainWindow.setFixedSize(1167, 635)
     #隐藏提示框
-    self.hideWaitBox()
-    #初始化环境变量
-    self.initEnv()
-    #初始化配置对象
-    self.configObj = {}
-    #载入配置
-    self.loadConfig()
+    self.hideWaitBox()    
     #加载甜酸器类型
     self.loadAdapterList()
     #设置事件
     self.setEvents()
     #初始化
     self.initData()
-
-  def initEnv(self):
-    cfenv.configFilePath = os.path.join(cfenv.rootDir,'config.json')
-    cfenv.templeteScriptFile = os.path.join(cfenv.rootDir,'templete.js')
-    cfenv.normalScriptFile = os.path.join(cfenv.scriptDir,"normal.js")
-    cfenv.entityAndDAOScriptFile = os.path.join(cfenv.scriptDir,"entityanddao.js")
-
-  def loadConfig(self):
-    if pathlib.Path(cfenv.configFilePath).exists():
-      #读入数据
-      try:
-        jsonStr = iotool.readAllText(cfenv.configFilePath)
-        self.configObj = json.loads(jsonStr)
-      except Exception as exx:
-        self.initConfig()        
-    else:
-      self.initConfig()
-  
-  def initConfig(self):
-    #初始化的例子
-    self.configObj['dbPlugins'] = {'xxxxCode':{'title':'xxxDB','code':'xxxxCode','command':'python3 {local}/xxx.py {input} {output}','responseCoding':'utf8'}}
-    self.configObj['codeFileExtName'] = '.cs'
-    self.configObj['classNameBefore'] = 't'
-    self.configObj['classNameAfter'] = 'Object'
-    self.configObj['classNamespace'] = 'com.example'
-    self.configObj['dialogRootDir'] = '~/'
-    #写入数据
-    iotool.writeAllText(cfenv.configFilePath,json.dumps(self.configObj,indent=4))
   
   def loadAdapterList(self):
     self.mainUI.cbxDBAdapters.clear()
@@ -74,10 +40,10 @@ class Event_mainWindow(object):
     self.mainUI.cbxDBAdapters.addItem('Sqlite数据库(内置)',userData=sqliteAdapter)
     try:
       #外置
-      if self.configObj.get('dbPlugins') == None:
+      if cfenv.configObj.get('dbPlugins') == None:
         pass
       else:
-        self.adapterList = self.configObj.get('dbPlugins')
+        self.adapterList = cfenv.configObj.get('dbPlugins')
         print(self.adapterList)
         for k,v in self.adapterList.items():
           appAdapter = AppConfigSchemaAdapter()
@@ -231,7 +197,7 @@ class Event_mainWindow(object):
           self.hideWaitBox()
   
   def compileJS(self,script,tableData):
-    return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,self.configObj).execute()
+    return JsCompiler(script,self.mainUI.txtDBUrl.toPlainText(),tableData,cfenv.configObj).execute()
 
   def btnMakeAllCodeClicked(self,e):
     if self.nodeModels.rowCount() >= 1:
@@ -240,7 +206,7 @@ class Event_mainWindow(object):
 
       try:
         #选择路径
-        destPath=QFileDialog.getExistingDirectory(None,"请选择保存位置！",self.configObj["dialogRootDir"])
+        destPath=QFileDialog.getExistingDirectory(None,"请选择保存位置！",cfenv.configObj["dialogRootDir"])
         #生成目标路径      
         destCodePath = os.path.join(destPath,'classes')
         destAttachPath = os.path.join(destPath,'attachs')        
@@ -257,9 +223,9 @@ class Event_mainWindow(object):
           print(ee)
         if pathlib.Path(destCodePath).exists():
           #生成代码
-          classBeforeName = self.configObj["classNameBefore"]
-          classAfterName = self.configObj["classNameAfter"]
-          codeFileExtName = self.configObj["codeFileExtName"]
+          classBeforeName = cfenv.configObj["classNameBefore"]
+          classAfterName = cfenv.configObj["classNameAfter"]
+          codeFileExtName = cfenv.configObj["codeFileExtName"]
           #读入实体和DAO脚本
           entityScript = iotool.readAllText(cfenv.entityAndDAOScriptFile)
           for rowIndex in range(0,self.nodeModels.rowCount()):
@@ -313,7 +279,7 @@ class Event_mainWindow(object):
 
   def btnDownloadInputTempleteClicked(self,e):
     inputAdapter = AdapterInputConfig("data source ='xxxdb'","xxxcode")    
-    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置",self.configObj["dialogRootDir"],"输入模板[JSON](*.json)")
+    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择输入模板保存位置",cfenv.configObj["dialogRootDir"],"输入模板[JSON](*.json)")
     iotool.writeAllText(inputFile,json.dumps(inputAdapter.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
   
@@ -325,12 +291,12 @@ class Event_mainWindow(object):
     tempTable.columns.append(tempIDField)
     tempTable.columns.append(tempNameField)
     tempDB.tables.append(tempTable)
-    outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置",self.configObj["dialogRootDir"],"输出模板[JSON](*.json)")
+    outputFile,outputFormat = QFileDialog.getSaveFileName(None,"选择输出模板保存位置",cfenv.configObj["dialogRootDir"],"输出模板[JSON](*.json)")
     iotool.writeAllText(outputFile,json.dumps(tempDB.toDict(),indent=4))
     QMessageBox.information(None,"提示","保存完成！")
 
   def btnDownloadJSClicked(self,e):    
-    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择脚本模板保存位置",self.configObj["dialogRootDir"],"JS脚本[JS](*.js)")
+    inputFile,inputFormat = QFileDialog.getSaveFileName(None,"选择脚本模板保存位置",cfenv.configObj["dialogRootDir"],"JS脚本[JS](*.js)")
     iotool.writeAllText(inputFile,iotool.readAllText(cfenv.templeteScriptFile))
     QMessageBox.information(None,"提示","保存完成！")
 

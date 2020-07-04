@@ -16,6 +16,8 @@ class cfenv(object):
         初始化配置及环境变量
     '''
     def initEnvData():
+        #初始化配置对象
+        cfenv.configObj = {}
         #初始化基础目录结构
         cfenv.rootDir = pathlib.Path(os.getcwd()).parent
         cfenv.binDir = os.path.join(cfenv.rootDir,'bin')
