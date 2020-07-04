@@ -272,7 +272,7 @@ class Event_mainWindow(object):
       iotool.writeAllText(cfenv.configFilePath,self.mainUI.txtConfig.toPlainText())
       cfenv.loadConfig()
       self.loadAdapterList()
-      self.mainUI.txtConfig.setText(iotool.readAllText(cfenv.configFilePath))
+      self.initData()
       QMessageBox.information(None,"提示","保存完成!")
     except Exception as e:
       QMessageBox.information(None,"错误","保存失败!输出：" + e)
