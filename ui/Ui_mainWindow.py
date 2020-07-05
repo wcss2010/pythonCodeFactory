@@ -180,7 +180,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.2  项目地址: https://github.com/wcss2010/pythoncodefactory"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.2  项目地址: https://github.com/wcss2010/pythoncodefactory(欢迎来访!)"))
         self.tabNormal.setProperty("currentTabText", _translate("MainWindow", "常用代码"))
         self.txtNormalCodeSearch.setPlaceholderText(_translate("MainWindow", "请输入要查询的关键字！"))
         self.btnNormalBeforeFind.setText(_translate("MainWindow", "向前找"))
