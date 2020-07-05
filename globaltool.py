@@ -196,6 +196,73 @@ class jsoncodewriter(object):
         return json.dumps(self.__buf)
 
 '''
+    Json字典
+'''
+class jsondict(object):
+    def __init__(self):
+        self.data = {}
+
+    '''
+       载入Json字典数据(从Json字符串)
+    '''
+    def load(self,cnt):
+        self.data = json.loads(cnt)
+
+    '''
+       从文件载入Json字典数据(从文件)
+    '''
+    def loadFile(self,file):
+        self.load(iotool.readAllText(file))
+
+    '''
+       从文件载入Json字典数据(从ScriptDir中的文件)
+    '''
+    def loadFileFromScriptDir(self,fName):
+        self.loadFile(os.path.join(cfenv.scriptDir,fName))
+
+    '''
+       保存Json数据到文件
+    '''
+    def saveFile(self,file):
+        iotool.writeAllText(file,json.dumps(self.data))
+
+'''
+    代码生成（主要用于载入模板文件然后替换）
+'''
+class codemaker(object):
+    def __init__(self):
+        self.templete = stringbuffer()
+        self.kvData = {}
+
+    '''
+        载入模板(从字符串)
+    '''
+    def loadTemplete(self,cnt):
+        self.templete.fromString(cnt)
+    
+    '''
+        载入模板(从文件)
+    '''
+    def loadTempleteFile(self,file):
+        self.loadTemplete(iotool.readAllText(file))
+
+    '''
+        载入模板(从ScriptDir中的文件)
+    '''
+    def loadTempleteFileFromScriptDir(self,tName):
+        self.loadTempleteFile(os.path.join(cfenv.scriptDir,tName))
+
+    '''
+        替换关键字
+    '''
+    def execute(self):
+        tempStr = self.templete.toString()
+        for k,v in self.kvData.items():
+            replaceKey = '{%' + k + '%}'
+            tempStr = tempStr.replace(replaceKey,v)
+        return stringbuffer().fromString(tempStr)
+
+'''
    读写工具类
 '''
 class iotool(object):
