@@ -45,8 +45,8 @@ function script(dbUrl,tableData,dbPluginConfig)
    //     start(运行指令并等待返回结果,参数：命令字符串，返回结果字符集) readAllText(读入所有文本,参数：文件路径) readAllByte(读入所有字节,参数：文件路径) writeAllText(写入所有文本,参数：文件路径,要写入的文本) writeAllByte(写入所有字节,参数：文件路径,要写入的字节集)
    //  (5) jsondict(Json字典)
    //     data(Json字典数据变量) load(载入Json字典，参数：Json字符串) loadFile(载入Json字典从文件，参数：Json文件路径) loadFileFromScriptDir(载入Json字典从ScriptDir中的文件,参数：Json文件名) saveFile(保存Json字典到文件,参数：Json文件名)
-   //  (6) codemaker(模板文件替换生成类，模板中的占位符：{%占位符%})
-   //     templete(模板数据缓存变量_stringbuffer) kvData(关键字字典变量) loadTemplete(载入模板，参数：模板数据字符串) loadTempleteFile(从文件载入模板，参数：模板文件路径) loadTempleteFileFromScriptDir（从ScriptDir载入模板文件,参数：模板文件名） execute(根据kvData中的字典执行字符串替换，返回结果为stringbuffer变量)
+   //  (6) codemaker(模板文件替换生成类，模板中的占位符：$%占位符%$
+   //     templete(模板数据缓存变量_stringbuffer) kvData(关键字字典变量) loadTemplete(载入模板，参数：模板数据字符串) loadTempleteFile(从文件载入模板，参数：模板文件路径) loadTempleteFileFromScriptDir（从ScriptDir载入模板文件,参数：模板文件名） execute(根据kvData中的字典执行字符串替换，返回结果为stringbuffer变量) addKV(添加要替换的关键词，参数：占位符(去掉$和%),要替换的内容)
    //
 
    //取表名
@@ -84,8 +84,8 @@ function script(dbUrl,tableData,dbPluginConfig)
    //代码块例子4
    var cm4 = globaltool.codemaker()
    cm4.loadTempleteFileFromScriptDir('templete.txt')
-   cm4.kvData['colA'] = '一地在要工'
-   cm4.kvData['colB'] = '上是中国同'
+   cm4.addKV('colA','一地在要工');
+   cm4.addKV('colB','上是中国同');
    var sb4 = cm4.execute();
 
    //代码块例子5

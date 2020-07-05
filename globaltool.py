@@ -253,12 +253,18 @@ class codemaker(object):
         self.loadTempleteFile(os.path.join(cfenv.scriptDir,tName))
 
     '''
+        添加要替换的关键词
+    '''
+    def addKV(self,name,content):
+        self.kvData[name] = content
+
+    '''
         替换关键字
     '''
     def execute(self):
-        tempStr = self.templete.toString()
+        tempStr = self.templete.toString()        
         for k,v in self.kvData.items():
-            replaceKey = '{%' + k + '%}'
+            replaceKey = '$%' + k + '%$'
             tempStr = tempStr.replace(replaceKey,v)
         return stringbuffer().fromString(tempStr)
 
