@@ -131,7 +131,7 @@ class stringbuffer(object):
        添加文字
     '''
     def append(self,cnt):
-        self.__buf = self.__buf + cnt
+        self.__buf = self.__buf + (cnt.replace('\r','').replace('\n',stringbuffer.enterFlag))
         return self
 
     '''
@@ -145,7 +145,7 @@ class stringbuffer(object):
        将文字放入缓冲区
     '''
     def fromString(self,cnt):
-        self.__buf = cnt
+        self.__buf = (cnt.replace('\r','').replace('\n',stringbuffer.enterFlag))
         return self
 
     '''
