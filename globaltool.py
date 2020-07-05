@@ -237,6 +237,11 @@ class jsondict(object):
     def items(self):
         return self.__buf.items()
 
+    '''字典缓存中的keys()函数
+    '''
+    def keys(self):
+        return self.__buf.keys()
+
     '''
        输出Json串
     '''
