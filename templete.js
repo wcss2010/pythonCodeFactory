@@ -43,7 +43,10 @@ function script(dbUrl,tableData,dbPluginConfig)
    //     append(添加代码块,参数：字符串)  remove(删除代码块,参数：字符串)  toString(输出代码块到JSON字符串,参数：空)
    //  (4) iotool(读写工具类)
    //     start(运行指令并等待返回结果,参数：命令字符串，返回结果字符集) readAllText(读入所有文本,参数：文件路径) readAllByte(读入所有字节,参数：文件路径) writeAllText(写入所有文本,参数：文件路径,要写入的文本) writeAllByte(写入所有字节,参数：文件路径,要写入的字节集)
-   //
+   //  (5) jsondict(Json字典)
+   //     data(Json字典数据变量) load(载入Json字典，参数：Json字符串) loadFile(载入Json字典从文件，参数：Json文件路径) loadFileFromScriptDir(载入Json字典从ScriptDir中的文件,参数：Json文件名) saveFile(保存Json字典到文件,参数：Json文件名)
+   //  (6) codemaker(模板文件替换生成类)
+   //     templete(模板数据缓存变量_stringbuffer) kvData(关键字字典变量) loadTemplete(载入模板，参数：模板数据字符串) loadTempleteFile(从文件载入模板，参数：模板文件路径) loadTempleteFileFromScriptDir（从ScriptDir载入模板文件,参数：模板文件名） execute(根据kvData中的字典执行字符串替换，返回结果为stringbuffer变量)
    //
 
    //取表名
@@ -76,7 +79,21 @@ function script(dbUrl,tableData,dbPluginConfig)
    //代码块例子3
    var sb3 = globaltool.stringbuffer();
    pyimport os;
-   sb3.appendLine(globaltool.iotool.readAllText(os.path.join(globaltool.cfenv.rootDir,'config.json')));
+   sb3.fromString(globaltool.iotool.readAllText(os.path.join(globaltool.cfenv.rootDir,'config.json')));
+
+   //代码块例子4
+   var cm4 = globaltool.codemaker()
+   cm4.loadTempleteFileFromScriptDir('templete.txt')
+   cm4.kvData['colA'] = '一地在要工'
+   cm4.kvData['colB'] = '上是中国同'
+   var sb4 = cm4.execute();
+
+   //代码块例子5
+   var jd5 = globaltool.jsondict();
+   jd5.loadFileFromScriptDir('test.json');
+   var sb5 = globaltool.stringbuffer();
+   sb5.append('属性1：').appendLine(jd5.data['rowA']);
+   sb5.append('属性2：').appendLine(jd5.data['rowB']);
 
    //添加代码块1
    jsonCodeMaker.append('第一个例子',sb1.toB64String());
@@ -84,6 +101,10 @@ function script(dbUrl,tableData,dbPluginConfig)
    jsonCodeMaker.append('第二个例子',sb2.toB64String());
    //添加代码块3
    jsonCodeMaker.append('第三个例子',sb3.toB64String());
+   //添加代码块4
+   jsonCodeMaker.append('第四个例子',sb4.toB64String());
+   //添加代码块5
+   jsonCodeMaker.append('第五个例子',sb5.toB64String());
 
    //返回Json字符串
    return jsonCodeMaker.toString();
