@@ -126,14 +126,19 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.plWaitBox.setFont(font)
         self.plWaitBox.setAutoFillBackground(False)
-        self.plWaitBox.setStyleSheet("QGroupBox  {background:rgb(0, 170, 255);}\n"
+        self.plWaitBox.setStyleSheet("QGroupBox  {background:rgb(133, 133, 133);}\n"
 "QGroupBox  {color:white;}\n"
 "QGroupBox{\n"
 "border-width:2px;\n"
 "border-style:solid;\n"
 "border-radius: 10px;\n"
-"border-color:rgb(0, 170, 255);\n"
-"margin-top:0.5ex;\n"
+"border-color:rgb(133, 133, 133);\n"
+"margin-top:0.7ex;\n"
+"}\n"
+"QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;\n"
+"   left:10px;       //线的偏离度\n"
+"     margin-left: 0px;\n"
+"     padding:0 1px;   //文字在方框中位置的偏离度\n"
 "}")
         self.plWaitBox.setAlignment(QtCore.Qt.AlignCenter)
         self.plWaitBox.setObjectName("plWaitBox")
@@ -144,9 +149,11 @@ class Ui_MainWindow(object):
         self.lblWaitText.setFont(font)
         self.lblWaitText.setStyleSheet("QLabel{color:white}\n"
 "QLabel{\n"
-"border-width: 1px;\n"
+"border-width: 5px 5px 5px 5px;\n"
 "border-style: solid;\n"
-"border-color: white;}")
+"border-color: white;\n"
+"border-radius:15px; \n"
+"}")
         self.lblWaitText.setAlignment(QtCore.Qt.AlignCenter)
         self.lblWaitText.setObjectName("lblWaitText")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -164,7 +171,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.4  本项目地址: https://github.com/wcss2010/pythoncodefactory"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "简易数据库代码生成器V1.4.2  项目地址: https://github.com/wcss2010/pythoncodefactory"))
         self.tabNormal.setProperty("currentTabText", _translate("MainWindow", "常用代码"))
         self.txtNormalCodeSearch.setPlaceholderText(_translate("MainWindow", "请输入要查询的关键字！"))
         self.btnNormalBeforeFind.setText(_translate("MainWindow", "向前找"))

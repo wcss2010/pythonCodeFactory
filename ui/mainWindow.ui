@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>简易数据库代码生成器V1.4.4  本项目地址: https://github.com/wcss2010/pythoncodefactory</string>
+   <string>简易数据库代码生成器V1.4.2  项目地址: https://github.com/wcss2010/pythoncodefactory</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="tvTables">
@@ -424,14 +424,19 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">QGroupBox  {background:rgb(0, 170, 255);}
+     <string notr="true">QGroupBox  {background:rgb(133, 133, 133);}
 QGroupBox  {color:white;}
 QGroupBox{
 border-width:2px;
 border-style:solid;
 border-radius: 10px;
-border-color:rgb(0, 170, 255);
-margin-top:0.5ex;
+border-color:rgb(133, 133, 133);
+margin-top:0.7ex;
+}
+QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;
+   left:10px;       //线的偏离度
+     margin-left: 0px;
+     padding:0 1px;   //文字在方框中位置的偏离度
 }</string>
     </property>
     <property name="title">
@@ -457,9 +462,11 @@ margin-top:0.5ex;
      <property name="styleSheet">
       <string notr="true">QLabel{color:white}
 QLabel{
-border-width: 1px;
+border-width: 5px 5px 5px 5px;
 border-style: solid;
-border-color: white;}</string>
+border-color: white;
+border-radius:15px; 
+}</string>
      </property>
      <property name="text">
       <string>正在XX，请等待......</string>
