@@ -214,7 +214,7 @@ class jsondict(object):
        保存Json数据到文件
     '''
     def saveFile(self,file):
-        iotool.writeAllText(file,json.dumps(self.__buf))
+        iotool.writeAllText(file,json.dumps(self.__buf,indent=4))
 
     '''
        保存Json数据到ScriptDir中的文件
@@ -241,7 +241,7 @@ class jsondict(object):
        输出Json串
     '''
     def toJsonString(self):
-        return json.dumps(self.__buf)
+        return json.dumps(self.__buf,indent=4)
     
 '''
     代码生成（主要用于载入模板文件然后替换）
@@ -273,7 +273,7 @@ class codemaker(object):
         替换关键字
     '''
     def execute(self):
-        tempStr = self.templete.toString()        
+        tempStr = self.__templete
         for k,v in self.kvData.items():
             replaceKey = '$%' + k + '%$'
             tempStr = tempStr.replace(replaceKey,v)
