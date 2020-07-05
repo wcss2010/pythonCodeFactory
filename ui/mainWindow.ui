@@ -431,7 +431,7 @@ border-width:2px;
 border-style:solid;
 border-radius: 10px;
 border-color:rgb(133, 133, 133);
-margin-top:0.7ex;
+margin-top:1ex;
 }
 QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;
    left:10px;       //线的偏离度

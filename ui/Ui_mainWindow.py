@@ -133,7 +133,7 @@ class Ui_MainWindow(object):
 "border-style:solid;\n"
 "border-radius: 10px;\n"
 "border-color:rgb(133, 133, 133);\n"
-"margin-top:0.7ex;\n"
+"margin-top:1ex;\n"
 "}\n"
 "QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;\n"
 "   left:10px;       //线的偏离度\n"
