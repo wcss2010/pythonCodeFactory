@@ -211,6 +211,8 @@ class Event_mainWindow(object):
       return '{}'
     else:
       dbConfig = dbAdapter.dbAdapterInfo
+      if (dbConfig == None):
+        dbConfig = {'title':'sqlite数据库','code':'sqliteCode','command':'python3 {local}/sqlite.py {input} {output}','responseCoding':'utf8'}
       return JsCompiler(script,dbUrl,tableData,dbConfig).execute()
 
   def btnMakeAllCodeClicked(self,e):
