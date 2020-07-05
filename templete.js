@@ -39,14 +39,12 @@ function script(dbUrl,tableData,dbPluginConfig)
    //     rootDir(主目录变量) binDir(程序目录变量) dataDir(数据目录变量) dbPluginDir(插件目录变量) scriptDir(脚本目录变量) attachDir(附件目录变量) configFilePath(配置文件路径变量) backupConfigFilePath(备份配置文件路径变量) templeteScriptFile(标准的脚本模板) scriptEnvDir(脚本环境目录变量) normalScriptFile(常用代码脚本路径变量) entityAndDAOScriptFile(实体和DAO代码脚本路径变量) configObj（系统配置变量）
    //  (2) stringbuffer(类似于C#中的StringBuilder)
    //     enterFlag(回车点位符变量) clear(清理函数,参数：空) append(添加字符串函数,参数：字符串) appendLine(添加字符串并在末尾加回车函数,参数：字符串) fromString(载入非Base64字符串到缓冲区,参数：字符串) toString(输出可显示字符串,参数：空) fromB64String(解码并装载Base64字符串,参数：字符串) toB64String(将缓冲区内容编码为Base64字符串,参数：空)
-   //  (3) jsoncodewriter(Json代码块生成)
-   //     append(添加代码块,参数：字符串)  remove(删除代码块,参数：字符串)  toString(输出代码块到JSON字符串,参数：空)
+   //  (3) jsondict(Json字典)
+   //     addOrUpdate(添加或更新,参数：名称，内容) remove（删除,参数：名称） load(载入Json字典，参数：Json字符串) loadFile(载入Json字典从文件，参数：Json文件路径) loadFileFromScriptDir(载入Json字典从ScriptDir中的文件,参数：Json文件名) saveFile(保存Json字典到文件,参数：Json文件路径) saveFileToScriptDir(保存Json字典到ScriptDir中的文件,参数：Json文件名) getValue(获得键值，参数：名称，初始值) items(字典缓存中的items()函数) toJsonString(输出Json串)
    //  (4) iotool(读写工具类)
    //     start(运行指令并等待返回结果,参数：命令字符串，返回结果字符集) readAllText(读入所有文本,参数：文件路径) readAllByte(读入所有字节,参数：文件路径) writeAllText(写入所有文本,参数：文件路径,要写入的文本) writeAllByte(写入所有字节,参数：文件路径,要写入的字节集)
-   //  (5) jsondict(Json字典)
-   //     data(Json字典数据变量) load(载入Json字典，参数：Json字符串) loadFile(载入Json字典从文件，参数：Json文件路径) loadFileFromScriptDir(载入Json字典从ScriptDir中的文件,参数：Json文件名) saveFile(保存Json字典到文件,参数：Json文件名)
-   //  (6) codemaker(模板文件替换生成类，模板中的占位符：$%占位符%$
-   //     templete(模板数据缓存变量_stringbuffer) kvData(关键字字典变量) loadTemplete(载入模板，参数：模板数据字符串) loadTempleteFile(从文件载入模板，参数：模板文件路径) loadTempleteFileFromScriptDir（从ScriptDir载入模板文件,参数：模板文件名） execute(根据kvData中的字典执行字符串替换，返回结果为stringbuffer变量) addKV(添加要替换的关键词，参数：占位符(去掉$和%),要替换的内容)
+   //  (5) codemaker(模板文件替换生成类，模板中的占位符：$%占位符%$
+   //     kvData(关键字字典变量，类型为jsondict，可使用对应的函数) loadTemplete(载入模板，参数：模板数据字符串) loadTempleteFile(从文件载入模板，参数：模板文件路径) loadTempleteFileFromScriptDir（从ScriptDir载入模板文件,参数：模板文件名） execute(根据kvData中的字典执行字符串替换，返回结果为stringbuffer变量)
    //
 
    //取表名
@@ -55,7 +53,7 @@ function script(dbUrl,tableData,dbPluginConfig)
    var namespace = globaltool.cfenv.configObj["classNamespace"]
    
    //JSON代码块生成
-   var jsonCodeMaker = globaltool.jsoncodewriter();
+   var jsonCodeMaker = globaltool.jsondict();
    
    //代码块例子1
    var sb1 = globaltool.stringbuffer();
@@ -84,28 +82,28 @@ function script(dbUrl,tableData,dbPluginConfig)
    //代码块例子4
    var cm4 = globaltool.codemaker()
    cm4.loadTempleteFileFromScriptDir('templete.txt')
-   cm4.addKV('colA','一地在要工');
-   cm4.addKV('colB','上是中国同');
+   cm4.kvData.addOrUpdate('colA','一地在要工');
+   cm4.kvData.addOrUpdate('colB','上是中国同');
    var sb4 = cm4.execute();
 
    //代码块例子5
    var jd5 = globaltool.jsondict();
    jd5.loadFileFromScriptDir('test.json');
    var sb5 = globaltool.stringbuffer();
-   sb5.append('属性1：').appendLine(jd5.data['rowA']);
-   sb5.append('属性2：').appendLine(jd5.data['rowB']);
+   sb5.append('属性1：').appendLine(jd5.getValue('rowA','空值1'));
+   sb5.append('属性2：').appendLine(jd5.getValue('rowB','空值2'));
 
    //添加代码块1
-   jsonCodeMaker.append('第一个例子',sb1.toB64String());
+   jsonCodeMaker.addOrUpdate('第一个例子',sb1.toB64String());
    //添加代码块2
-   jsonCodeMaker.append('第二个例子',sb2.toB64String());
+   jsonCodeMaker.addOrUpdate('第二个例子',sb2.toB64String());
    //添加代码块3
-   jsonCodeMaker.append('第三个例子',sb3.toB64String());
+   jsonCodeMaker.addOrUpdate('第三个例子',sb3.toB64String());
    //添加代码块4
-   jsonCodeMaker.append('第四个例子',sb4.toB64String());
+   jsonCodeMaker.addOrUpdate('第四个例子',sb4.toB64String());
    //添加代码块5
-   jsonCodeMaker.append('第五个例子',sb5.toB64String());
+   jsonCodeMaker.addOrUpdate('第五个例子',sb5.toB64String());
 
    //返回Json字符串
-   return jsonCodeMaker.toString();
+   return jsonCodeMaker.toJsonString();
 }
