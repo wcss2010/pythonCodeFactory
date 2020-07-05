@@ -140,10 +140,11 @@ class Ui_MainWindow(object):
 "     margin-left: 0px;\n"
 "     padding:0 1px;   //文字在方框中位置的偏离度\n"
 "}")
+        self.plWaitBox.setTitle("")
         self.plWaitBox.setAlignment(QtCore.Qt.AlignCenter)
         self.plWaitBox.setObjectName("plWaitBox")
         self.lblWaitText = QtWidgets.QLabel(self.plWaitBox)
-        self.lblWaitText.setGeometry(QtCore.QRect(10, 30, 330, 110))
+        self.lblWaitText.setGeometry(QtCore.QRect(10, 50, 330, 90))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.lblWaitText.setFont(font)
@@ -156,6 +157,14 @@ class Ui_MainWindow(object):
 "}")
         self.lblWaitText.setAlignment(QtCore.Qt.AlignCenter)
         self.lblWaitText.setObjectName("lblWaitText")
+        self.lblWaitTitle = QtWidgets.QLabel(self.plWaitBox)
+        self.lblWaitTitle.setGeometry(QtCore.QRect(10, 10, 331, 30))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.lblWaitTitle.setFont(font)
+        self.lblWaitTitle.setStyleSheet("QLabel{color:white}")
+        self.lblWaitTitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblWaitTitle.setObjectName("lblWaitTitle")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1168, 36))
@@ -198,7 +207,7 @@ class Ui_MainWindow(object):
         self.btnOpenAttachDir.setText(_translate("MainWindow", "打开附件目录"))
         self.btnOpenPluginDir.setText(_translate("MainWindow", "打开插件目录"))
         self.btnOpenScriptDir.setText(_translate("MainWindow", "打开脚本目录"))
-        self.plWaitBox.setTitle(_translate("MainWindow", "提示"))
         self.lblWaitText.setText(_translate("MainWindow", "正在XX，请等待......"))
+        self.lblWaitTitle.setText(_translate("MainWindow", "提示"))
 
 from jsCodeEditors import JSCodeEditor, LineCodeEditor

@@ -440,7 +440,7 @@ QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;
 }</string>
     </property>
     <property name="title">
-     <string>提示</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -449,9 +449,9 @@ QGroupBox::title { subcontrol-origin: margin;subcontrol-position: top left;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>50</y>
        <width>330</width>
-       <height>110</height>
+       <height>90</height>
       </rect>
      </property>
      <property name="font">
@@ -470,6 +470,30 @@ border-radius:15px;
      </property>
      <property name="text">
       <string>正在XX，请等待......</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblWaitTitle">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>331</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{color:white}</string>
+     </property>
+     <property name="text">
+      <string>提示</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
