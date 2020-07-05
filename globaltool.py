@@ -240,7 +240,22 @@ class jsondict(object):
     '''字典缓存中的keys()函数
     '''
     def keys(self):
-        return self.__buf.keys()
+        keyList = []
+        for k,v in self.items():
+            keyList.append(k)
+        return keyList
+
+    '''
+       字典缓存中的clear()函数
+    '''
+    def clear(self):
+        self.__buf.clear()
+
+    '''
+       字典记录数
+    '''
+    def count(self):
+        return len(self.__buf)
 
     '''
        输出Json串
