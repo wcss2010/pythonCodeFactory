@@ -167,46 +167,36 @@ class stringbuffer(object):
         return str(base64.b64encode(self.__buf.encode("utf-8")), "utf-8")
 
 '''
-    Json代码编辑类
+    Json字典
 '''
-class jsoncodewriter(object):
+class jsondict(object):
     def __init__(self):
         super().__init__()
         self.__buf = {}
 
     '''
-       添加代码
+       添加或更新
     '''
-    def append(self,cName,b64String):
-        self.__buf[cName] = b64String
+    def addOrUpdate(self,cName,cContent):
+        self.__buf[cName] = cContent
 
     '''
-       删除代码
+       删除
     '''
     def remove(self,cName):
         try:
-            self.__buf.pop(cName)
+            return self.__buf.pop(cName)
         except Exception as ex:
-            pass
-
-    '''
-       输出Json串
-    '''
-    def toString(self):
-        return json.dumps(self.__buf)
-
-'''
-    Json字典
-'''
-class jsondict(object):
-    def __init__(self):
-        self.data = {}
+            return None
 
     '''
        载入Json字典数据(从Json字符串)
     '''
     def load(self,cnt):
-        self.data = json.loads(cnt)
+        try:
+            self.__buf = json.loads(cnt)
+        except Exception as ex:
+            self.__buf = {}
 
     '''
        从文件载入Json字典数据(从文件)
@@ -224,21 +214,48 @@ class jsondict(object):
        保存Json数据到文件
     '''
     def saveFile(self,file):
-        iotool.writeAllText(file,json.dumps(self.data))
+        iotool.writeAllText(file,json.dumps(self.__buf))
 
+    '''
+       保存Json数据到ScriptDir中的文件
+    '''
+    def saveFileToScriptDir(self,fName):
+        self.saveFile(os.path.join(cfenv.scriptDir,fName))
+
+    '''
+       获得数据
+    '''
+    def getValue(self,pName,defaultVal):
+        if self.__buf.get(pName) == None:
+            return defaultVal
+        else:
+            return self.__buf[pName]
+
+    '''
+       字典缓存中的items()函数
+    '''
+    def items(self):
+        return self.__buf.items()
+
+    '''
+       输出Json串
+    '''
+    def toJsonString(self):
+        return json.dumps(self.__buf)
+    
 '''
     代码生成（主要用于载入模板文件然后替换）
 '''
 class codemaker(object):
     def __init__(self):
-        self.templete = stringbuffer()
-        self.kvData = {}
+        self.__templete = ''
+        self.kvData = jsondict()
 
     '''
         载入模板(从字符串)
     '''
     def loadTemplete(self,cnt):
-        self.templete.fromString(cnt)
+        self.__templete = cnt
     
     '''
         载入模板(从文件)
@@ -251,12 +268,6 @@ class codemaker(object):
     '''
     def loadTempleteFileFromScriptDir(self,tName):
         self.loadTempleteFile(os.path.join(cfenv.scriptDir,tName))
-
-    '''
-        添加要替换的关键词
-    '''
-    def addKV(self,name,content):
-        self.kvData[name] = content
 
     '''
         替换关键字
