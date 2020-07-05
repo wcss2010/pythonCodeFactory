@@ -75,6 +75,7 @@ function script(dbUrl,tableData,dbPluginConfig)
    sb2.appendLine(globaltool.cfenv.scriptDir);
    sb2.appendLine(globaltool.cfenv.attachDir);
    sb2.appendLine(namespace);
+   sb2.appendLine(dbType);
 
    //代码块例子3
    var sb3 = globaltool.stringbuffer();
@@ -101,7 +102,7 @@ function script(dbUrl,tableData,dbPluginConfig)
    for(var k in keyss)
    {
       var key = keyss[k];
-      sb6.append("Key:").append(jd5.getValue(key,"none"));
+      sb6.append("Key:").append(key).append(',Value:').appendLine(jd5.getValue(key,"none"));
    }
 
    //添加代码块1
